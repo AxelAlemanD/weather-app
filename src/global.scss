@@ -18,9 +18,31 @@
 @import "@ionic/angular/css/typography.css";
 @import '@ionic/angular/css/display.css';
 
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+.text {
+
+    /* Text colors */
+    &-dark {
+        color: var(--ion-color-dark);
+    }
+
+    &-gray {
+        color: var(--ion-color-medium);
+    }
+
+    &-bold {
+        font-weight: bold;
+    }
+
+    /* Text transforms */
+    &-capitalize {
+        text-transform: capitalize;
+    }
+}
+
+/* Button styles */
+ion-button {
+    font-weight: 500;
+    --color: var(--ion-color-dark);
+    --border-radius: 8px;
+    --box-shadow: none;
+}
