@@ -16,33 +16,60 @@
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import '@ionic/angular/css/display.css';
+@import "@ionic/angular/css/display.css";
+
+/* Font sizes */
+h1,
+.heading-1 {
+  font-size: clamp(3.438rem, 4vw + 2rem, 5rem);
+  font-weight: bold;
+}
+
+h2,
+.heading-2 {
+  font-size: clamp(2rem, 4vw + 1rem, 4rem);
+}
+
+h3,
+.heading-3,
+.large-font {
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.625rem);
+}
+
+.normal-font {
+  font-size: 1rem;
+
+}
+
+.small-font {
+  font-size: 0.75rem;
+}
 
 .text {
 
-    /* Text colors */
-    &-dark {
-        color: var(--ion-color-dark);
-    }
+  /* Text colors */
+  &-dark {
+    color: var(--ion-color-dark);
+  }
 
-    &-gray {
-        color: var(--ion-color-medium);
-    }
+  &-gray {
+    color: var(--ion-color-medium);
+  }
 
-    &-bold {
-        font-weight: bold;
-    }
+  &-bold {
+    font-weight: bold;
+  }
 
-    /* Text transforms */
-    &-capitalize {
-        text-transform: capitalize;
-    }
+  /* Text transforms */
+  &-capitalize {
+    text-transform: capitalize;
+  }
 }
 
 /* Button styles */
 ion-button {
-    font-weight: 500;
-    --color: var(--ion-color-dark);
-    --border-radius: 8px;
-    --box-shadow: none;
+  font-weight: 500;
+  --color: var(--ion-color-dark);
+  --border-radius: 8px;
+  --box-shadow: none;
 }
