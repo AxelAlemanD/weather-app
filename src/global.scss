@@ -66,6 +66,21 @@ h3,
   }
 }
 
+/* Image sizes */
+.image {
+  &-sm {
+    width: 1.875rem;
+  }
+
+  &-md {
+    width: 6.25rem;
+  }
+
+  &-lg {
+    width: 9.375rem;
+  }
+}
+
 /* Button styles */
 ion-button {
   font-weight: 500;
