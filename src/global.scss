@@ -81,6 +81,16 @@ h3,
   }
 }
 
+/* Card styles */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.875rem;
+  background-color: var(--ion-color-light);
+}
+
 /* Button styles */
 ion-button {
   font-weight: 500;
