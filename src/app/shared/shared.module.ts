@@ -5,15 +5,18 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { WeatherForecastCardComponent } from '../components/weather-forecast-card/weather-forecast-card.component';
 import { HourlyWeatherCardComponent } from '../components/hourly-weather-card/hourly-weather-card.component';
+import { WeatherDetailsCardComponent } from '../components/weather-details-card/weather-details-card.component';
 
 @NgModule({
   declarations: [
     WeatherForecastCardComponent,
-    HourlyWeatherCardComponent
+    HourlyWeatherCardComponent,
+    WeatherDetailsCardComponent
   ],
   exports: [
     WeatherForecastCardComponent,
-    HourlyWeatherCardComponent
+    HourlyWeatherCardComponent,
+    WeatherDetailsCardComponent
   ],
   imports: [
     CommonModule,
