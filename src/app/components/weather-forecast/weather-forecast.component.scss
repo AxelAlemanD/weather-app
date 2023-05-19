@@ -1,0 +1,54 @@
+@import "/src/theme/mixins.scss";
+
+#weather {
+  @include flex-column;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.weather__search {
+  display: flex;
+  justify-content: center;
+}
+
+.weather__time {
+  @include flex-column;
+}
+
+.weather__today {
+  @include flex-column;
+
+  .hourly__list {
+    display: flex;
+    gap: 0.7rem;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+.week__list {
+  @include flex-column;
+  gap: 0.7rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .weather__time {
+    gap: 2rem;
+    flex-direction: row;
+
+    .weather__today {
+      width: 45%;
+    }
+
+    .weather__week {
+      width: 55%;
+    }
+  }
+
+  ion-searchbar {
+    width: 50%;
+  }
+}

@@ -8,9 +8,11 @@ import { HourlyForecastCardComponent } from '../components/hourly-forecast-card/
 import { WeatherDetailsCardComponent } from '../components/weather-details-card/weather-details-card.component';
 import { TemperatureScaleSwitchComponent } from '../components/temperature-scale-switch/temperature-scale-switch.component';
 import { CurrentWeatherComponent } from '../components/current-weather/current-weather.component';
+import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
 
 @NgModule({
   declarations: [
+    WeatherForecastComponent,
     CurrentWeatherComponent,
     DailyForecastCardComponent,
     HourlyForecastCardComponent,
@@ -18,6 +20,7 @@ import { CurrentWeatherComponent } from '../components/current-weather/current-w
     TemperatureScaleSwitchComponent
   ],
   exports: [
+    WeatherForecastComponent,
     CurrentWeatherComponent,
     DailyForecastCardComponent,
     HourlyForecastCardComponent,

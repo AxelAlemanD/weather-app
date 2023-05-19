@@ -1,0 +1,32 @@
+<div id="weather">
+    <section class="weather__search">
+        <ion-searchbar placeholder="Search" color="light" class="custom"></ion-searchbar>
+    </section>
+    <app-temperature-scale-switch></app-temperature-scale-switch>
+    <article class="weather__time">
+        <div class="weather__today">
+            <app-current-weather></app-current-weather>
+            <section class="weather__hourly">
+                <h3 class="normal-font text-gray">Today</h3>
+                <div class="hourly__list">
+                    <app-hourly-forecast-card></app-hourly-forecast-card>
+                    <app-hourly-forecast-card></app-hourly-forecast-card>
+                    <app-hourly-forecast-card></app-hourly-forecast-card>
+                    <app-hourly-forecast-card></app-hourly-forecast-card>
+                    <app-hourly-forecast-card></app-hourly-forecast-card>
+                    <app-hourly-forecast-card></app-hourly-forecast-card>
+                </div>
+            </section>
+        </div>
+        <section class="weather__week">
+            <h3 class="normal-font text-gray">Next 5 day</h3>
+            <div class="week__list">
+                <app-daily-forecast-card></app-daily-forecast-card>
+                <app-daily-forecast-card></app-daily-forecast-card>
+                <app-daily-forecast-card></app-daily-forecast-card>
+                <app-daily-forecast-card></app-daily-forecast-card>
+                <app-daily-forecast-card></app-daily-forecast-card>
+            </div>
+        </section>
+    </article>
+</div>
