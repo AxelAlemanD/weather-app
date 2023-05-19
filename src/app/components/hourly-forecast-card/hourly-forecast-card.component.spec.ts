@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HourlyWeatherCardComponent } from './hourly-weather-card.component';
+import { HourlyForecastCardComponent } from './hourly-forecast-card.component';
 
 describe('HourlyWeatherCardComponent', () => {
-  let component: HourlyWeatherCardComponent;
-  let fixture: ComponentFixture<HourlyWeatherCardComponent>;
+  let component: HourlyForecastCardComponent;
+  let fixture: ComponentFixture<HourlyForecastCardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HourlyWeatherCardComponent]
+      declarations: [HourlyForecastCardComponent]
     });
-    fixture = TestBed.createComponent(HourlyWeatherCardComponent);
+    fixture = TestBed.createComponent(HourlyForecastCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
