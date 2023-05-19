@@ -1,11 +1,13 @@
 ion-toggle {
-    --track-background: #FAFAFA;
-    --track-background-checked: #FAFAFA;
+    --track-background: var(--ion-color-light);
+    --track-background-checked: var(--ion-color-light);
 
     &::part(handle) {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: #2C2C2C;
+        font-weight: bold;
 
         &:before {
             content: "C°";
