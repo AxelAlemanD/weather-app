@@ -91,6 +91,12 @@ h3,
   background-color: var(--ion-color-light);
 }
 
+/* Searchbar styles */
+ion-searchbar.custom {
+  --box-shadow: none;
+  --border-radius: 0.75rem;
+}
+
 /* Button styles */
 ion-button {
   font-weight: 500;
