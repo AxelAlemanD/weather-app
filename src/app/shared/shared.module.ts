@@ -6,17 +6,20 @@ import { IonicModule } from '@ionic/angular';
 import { WeatherForecastCardComponent } from '../components/weather-forecast-card/weather-forecast-card.component';
 import { HourlyWeatherCardComponent } from '../components/hourly-weather-card/hourly-weather-card.component';
 import { WeatherDetailsCardComponent } from '../components/weather-details-card/weather-details-card.component';
+import { TemperatureScaleSwitchComponent } from '../components/temperature-scale-switch/temperature-scale-switch.component';
 
 @NgModule({
   declarations: [
     WeatherForecastCardComponent,
     HourlyWeatherCardComponent,
-    WeatherDetailsCardComponent
+    WeatherDetailsCardComponent,
+    TemperatureScaleSwitchComponent
   ],
   exports: [
     WeatherForecastCardComponent,
     HourlyWeatherCardComponent,
-    WeatherDetailsCardComponent
+    WeatherDetailsCardComponent,
+    TemperatureScaleSwitchComponent
   ],
   imports: [
     CommonModule,

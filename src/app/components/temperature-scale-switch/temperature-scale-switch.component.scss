@@ -1,0 +1,20 @@
+ion-toggle {
+    --track-background: #FAFAFA;
+    --track-background-checked: #FAFAFA;
+
+    &::part(handle) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:before {
+            content: "C°";
+        }
+    }
+}
+
+.toggle-checked::part(handle) {
+    &:before {
+        content: "F°";
+    }
+}
