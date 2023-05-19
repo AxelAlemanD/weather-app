@@ -1,0 +1,20 @@
+@import "/src/theme/mixins.scss";
+
+.weather__current {
+    @include flex-column;
+    align-items: center;
+    text-align: center;
+
+    .current__details {
+        @include flex-column;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .weather__current {
+        flex-direction: row;
+        text-align: start;
+        gap: 1rem;
+    }
+}
