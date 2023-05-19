@@ -70,14 +70,17 @@ h3,
 .image {
   &-sm {
     width: 1.875rem;
+    height: auto;
   }
 
   &-md {
     width: 6.25rem;
+    height: auto;
   }
 
   &-lg {
     width: 9.375rem;
+    height: auto;
   }
 }
 
