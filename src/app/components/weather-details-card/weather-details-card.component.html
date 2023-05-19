@@ -1,17 +1,17 @@
 <div class="card">
     <div class="card__content">
         <div class="card__item">
-            <img class="image-icon" src="../../../assets/icon/wind.png" alt="">
+            <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/wind.png" alt="">
             <span class="normal-font text-bold">2 km/h</span>
             <span class="small-font text-gray">Wind</span>
         </div>
         <div class="card__item">
-            <img class="image-icon" src="../../../assets/icon/drop.png" alt="">
+            <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/drop.png" alt="">
             <span class="normal-font text-bold">18%</span>
             <span class="small-font text-gray">Humidity</span>
         </div>
         <div class="card__item">
-            <img class="image-icon" src="../../../assets/icon/umbrella.png" alt="">
+            <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/umbrella.png" alt="">
             <span class="normal-font text-bold">100%</span>
             <span class="small-font text-gray">Rain</span>
         </div>
