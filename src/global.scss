@@ -112,7 +112,8 @@ ion-searchbar.custom {
 /* Button styles */
 ion-button {
   font-weight: 500;
+  text-transform: capitalize;
   --color: var(--ion-color-dark);
-  --border-radius: 8px;
+  --border-radius: 0.5rem;
   --box-shadow: none;
 }
