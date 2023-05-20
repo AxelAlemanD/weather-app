@@ -18,6 +18,15 @@
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
+@import "/src/theme/mixins.scss";
+
+
+/* Content styles */
+#content::part(scroll) {
+  @include flex-column;
+  padding: 1rem;
+}
+
 /* Font sizes */
 h1,
 .heading-1 {
