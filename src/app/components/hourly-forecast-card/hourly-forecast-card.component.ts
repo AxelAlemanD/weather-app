@@ -11,8 +11,6 @@ export class HourlyForecastCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.info('Component start');
-  }
+  ngOnInit(): void { }
 
 }

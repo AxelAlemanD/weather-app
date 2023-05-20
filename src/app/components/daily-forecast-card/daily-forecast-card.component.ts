@@ -9,8 +9,6 @@ export class DailyForecastCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.info('Component start');
-  }
-  
+  ngOnInit(): void { }
+
 }
