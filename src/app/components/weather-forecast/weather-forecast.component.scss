@@ -1,13 +1,7 @@
 @import "/src/theme/mixins.scss";
 
-#weather {
+.weather {
   @include flex-column;
-  padding: 1rem;
-  justify-content: center;
-}
-
-.weather__search {
-  display: flex;
   justify-content: center;
 }
 
@@ -46,9 +40,5 @@
     .weather__week {
       width: 55%;
     }
-  }
-
-  ion-searchbar {
-    width: 50%;
   }
 }
