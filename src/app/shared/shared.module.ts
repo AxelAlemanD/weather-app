@@ -9,9 +9,11 @@ import { WeatherDetailsCardComponent } from '../components/weather-details-card/
 import { TemperatureScaleSwitchComponent } from '../components/temperature-scale-switch/temperature-scale-switch.component';
 import { CurrentWeatherComponent } from '../components/current-weather/current-weather.component';
 import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
+import { CitySearchResultsComponent } from '../components/city-search-results/city-search-results.component';
 
 @NgModule({
   declarations: [
+    CitySearchResultsComponent,
     WeatherForecastComponent,
     CurrentWeatherComponent,
     DailyForecastCardComponent,
@@ -20,6 +22,7 @@ import { WeatherForecastComponent } from '../components/weather-forecast/weather
     TemperatureScaleSwitchComponent
   ],
   exports: [
+    CitySearchResultsComponent,
     WeatherForecastComponent,
     CurrentWeatherComponent,
     DailyForecastCardComponent,
