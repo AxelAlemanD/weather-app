@@ -10,9 +10,11 @@
     </ion-searchbar>
   </section>
   <app-weather-forecast 
+    [@fadeInOut]
     *ngIf="!showCitySearchResults">
   </app-weather-forecast>
   <app-city-search-results 
+    [@fadeInOut]
     *ngIf="showCitySearchResults">
   </app-city-search-results>
 </ion-content>
