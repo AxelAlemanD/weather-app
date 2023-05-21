@@ -105,8 +105,13 @@ h3,
 
 /* Searchbar styles */
 ion-searchbar.custom {
+  padding: 0;
   --box-shadow: none;
   --border-radius: 0.75rem;
+
+  .searchbar-cancel-button {
+    color: var(--cancel-button-color) !important;
+  }
 }
 
 /* Button styles */

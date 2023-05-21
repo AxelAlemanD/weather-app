@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  showCitySearchResults: boolean = false;
+
+  constructor() { }
+
+  toggleCitySearchResultsComponent(event: any) {
+    this.showCitySearchResults = (event.type === "ionFocus" && event.type !== "ionCancel");
+  }
 
 }

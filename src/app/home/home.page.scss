@@ -1,27 +1,12 @@
-#container {
-  text-align: center;
+@import "/src/theme/mixins.scss";
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.weather__search {
+  display: flex;
+  justify-content: center;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+@media only screen and (min-width: 1024px) {
+  ion-searchbar {
+    width: 30%;
+  }
 }
