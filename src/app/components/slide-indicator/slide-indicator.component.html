@@ -1,0 +1,8 @@
+<div class="slide">
+    <ng-container *ngFor="let city of cities;let cityIndex=index">
+        <div class="slide__indicator" [ngClass]="{
+                'slide__indicator--active': currentSlide === cityIndex
+            }">
+        </div>
+    </ng-container>
+</div>

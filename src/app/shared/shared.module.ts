@@ -10,6 +10,7 @@ import { TemperatureScaleSwitchComponent } from '../components/temperature-scale
 import { CurrentWeatherComponent } from '../components/current-weather/current-weather.component';
 import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
 import { CitySearchResultsComponent } from '../components/city-search-results/city-search-results.component';
+import { SlideIndicatorComponent } from '../components/slide-indicator/slide-indicator.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CitySearchResultsComponent } from '../components/city-search-results/ci
     DailyForecastCardComponent,
     HourlyForecastCardComponent,
     WeatherDetailsCardComponent,
-    TemperatureScaleSwitchComponent
+    TemperatureScaleSwitchComponent,
+    SlideIndicatorComponent
   ],
   exports: [
     CitySearchResultsComponent,
@@ -28,7 +30,8 @@ import { CitySearchResultsComponent } from '../components/city-search-results/ci
     DailyForecastCardComponent,
     HourlyForecastCardComponent,
     WeatherDetailsCardComponent,
-    TemperatureScaleSwitchComponent
+    TemperatureScaleSwitchComponent,
+    SlideIndicatorComponent
   ],
   imports: [
     CommonModule,
