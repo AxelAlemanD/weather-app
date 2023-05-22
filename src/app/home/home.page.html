@@ -10,25 +10,18 @@
     </ion-searchbar>
   </section>
 
-  <app-temperature-scale-switch
-    [@fadeInOut]
-    *ngIf="!showCitySearchResults">
-  </app-temperature-scale-switch>
+  <div *ngIf="!showCitySearchResults" [@fadeInOut] class="weather__options">
+      <app-temperature-scale-switch></app-temperature-scale-switch>
+      <app-slide-indicator [cities]="cities" [currentSlide]="currentSlide"></app-slide-indicator>
+  </div>
 
   <swiper-container
+    #swiper
     [@fadeInOut]
-    *ngIf="!showCitySearchResults">
-    <swiper-slide>
-      <app-weather-forecast>
-      </app-weather-forecast>
-    </swiper-slide>
-    <swiper-slide>
-      <app-weather-forecast>
-      </app-weather-forecast>
-    </swiper-slide>
-    <swiper-slide>
-      <app-weather-forecast>
-      </app-weather-forecast>
+    *ngIf="!showCitySearchResults"
+    (slidechangetransitionstart)="updateCurrentSlide()">
+    <swiper-slide *ngFor="let city of cities">
+      <app-weather-forecast></app-weather-forecast>
     </swiper-slide>
   </swiper-container>
 
