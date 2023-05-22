@@ -35,4 +35,12 @@ export class HomePage {
     this.lastUpdate = new Date();
   }
 
+  preventSlideChange(eventType: string) {
+    if(eventType === "touchstart"){
+      this.swiperRef?.nativeElement.swiper.disable();
+    } else if (eventType === "touchend"){
+      this.swiperRef?.nativeElement.swiper.enable();
+    }
+  }
+
 }

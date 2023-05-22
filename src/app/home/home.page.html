@@ -25,9 +25,10 @@
     #swiper
     [@fadeInOut]
     *ngIf="!showCitySearchResults"
-    (slidechangetransitionstart)="updateCurrentSlide()">
+    (slidechangetransitionstart)="updateCurrentSlide()"
+  >
     <swiper-slide *ngFor="let city of cities">
-      <app-weather-forecast></app-weather-forecast>
+      <app-weather-forecast (onClickEvent)="preventSlideChange($event)"></app-weather-forecast>
     </swiper-slide>
   </swiper-container>
 

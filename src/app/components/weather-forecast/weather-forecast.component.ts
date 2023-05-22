@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherForecastComponent implements OnInit {
 
+  @Output() onClickEvent: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void { }
+
+  preventSlideChange(event: any) {
+    this.onClickEvent.emit(event.type);
+  }
 
 }
