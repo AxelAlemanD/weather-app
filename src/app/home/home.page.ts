@@ -15,6 +15,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class HomePage {
 
+  lastUpdate = new Date();
   currentSlide: number = 0;
   showCitySearchResults: boolean = false;
   cities = ['city 1', 'city 2', 'city 3'];
@@ -28,6 +29,10 @@ export class HomePage {
 
   updateCurrentSlide() {
     this.currentSlide = this.swiperRef?.nativeElement.swiper.activeIndex;
+  }
+
+  updateWeatherForecast() {
+    this.lastUpdate = new Date();
   }
 
 }

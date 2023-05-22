@@ -7,7 +7,19 @@
 
 .weather__options {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+
+  .options__refresh {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    ion-button::part(native) {
+      padding: 0.5rem;
+    }
+  }
 }
 
 @media only screen and (min-width: 1024px) {
