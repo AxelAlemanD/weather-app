@@ -122,3 +122,12 @@ ion-button {
   --border-radius: 0.5rem;
   --box-shadow: none;
 }
+
+swiper-container {
+  width: 100%;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+  }
+}

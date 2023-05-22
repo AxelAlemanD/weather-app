@@ -9,10 +9,29 @@
       class="custom">
     </ion-searchbar>
   </section>
-  <app-weather-forecast 
+
+  <app-temperature-scale-switch
     [@fadeInOut]
     *ngIf="!showCitySearchResults">
-  </app-weather-forecast>
+  </app-temperature-scale-switch>
+
+  <swiper-container
+    [@fadeInOut]
+    *ngIf="!showCitySearchResults">
+    <swiper-slide>
+      <app-weather-forecast>
+      </app-weather-forecast>
+    </swiper-slide>
+    <swiper-slide>
+      <app-weather-forecast>
+      </app-weather-forecast>
+    </swiper-slide>
+    <swiper-slide>
+      <app-weather-forecast>
+      </app-weather-forecast>
+    </swiper-slide>
+  </swiper-container>
+
   <app-city-search-results 
     [@fadeInOut]
     *ngIf="showCitySearchResults">
