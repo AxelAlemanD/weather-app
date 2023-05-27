@@ -1,8 +1,25 @@
-<div class="slide">
-    <ng-container *ngFor="let city of cities;let cityIndex=index">
-        <div class="slide__indicator" [ngClass]="{
-                'slide__indicator--active': currentSlide === cityIndex
+<div id="slide__controls">
+    <ion-button 
+        fill="clear" 
+        class="slide__control" 
+        (click)="showSlide(currentSlide - 1)"
+        [disabled]="currentSlide === 0">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <div class="indicator__group">
+        <div 
+            *ngFor="let city of cities; let cityIndex = index" 
+            class="indicator__item" 
+            [ngClass]="{
+                'indicator__item--active': currentSlide === cityIndex
             }">
         </div>
-    </ng-container>
+    </div>
+    <ion-button 
+        fill="clear" 
+        class="slide__control" 
+        (click)="showSlide(currentSlide + 1)"
+        [disabled]="currentSlide === cities.length - 1">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
 </div>

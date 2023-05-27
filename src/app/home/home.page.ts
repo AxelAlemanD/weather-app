@@ -43,4 +43,8 @@ export class HomePage {
     }
   }
 
+  showSlide(index: number) {
+    this.swiperRef?.nativeElement.swiper.slideTo(index);
+  }
+
 }

@@ -1,19 +1,38 @@
-.slide {
+#slide__controls {
     display: flex;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.7rem;
-    justify-content: space-between;
-    background-color: var(--ion-color-light);
+    align-items: center;
 
-    &__indicator {
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 50%;
-        background-color: var(--ion-color-medium-light);
+    .slide__control {
+        display: none;
+    }
 
-        &--active {
-            background-color: var(--ion-color-tertiary);
+    .indicator {
+        &__group {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.7rem;
+            justify-content: space-between;
+            background-color: var(--ion-color-light);
+        }
+
+        &__item {
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            background-color: var(--ion-color-medium-light);
+
+            &--active {
+                background-color: var(--ion-color-tertiary);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    #slide__controls {
+        .slide__control {
+            display: block;
         }
     }
 }

@@ -12,7 +12,11 @@
 
   <div *ngIf="!showCitySearchResults" [@fadeInOut] class="weather__options">
       <app-temperature-scale-switch style="flex: 4;"></app-temperature-scale-switch>
-      <app-slide-indicator [cities]="cities" [currentSlide]="currentSlide"></app-slide-indicator>
+      <app-slide-indicator 
+        [cities]="cities" 
+        [currentSlide]="currentSlide"
+        (slideIndexChange)="showSlide($event)">
+      </app-slide-indicator>
       <div class="options__refresh" style="flex: 4;">
         <span class="small-font text-gray">{{ lastUpdate | date:'h:mm a' }}</span>
         <ion-button fill="clear" (click)="updateWeatherForecast()">
