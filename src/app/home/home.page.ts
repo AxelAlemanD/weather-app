@@ -36,9 +36,9 @@ export class HomePage {
   }
 
   preventSlideChange(eventType: string) {
-    if(eventType === "touchstart"){
+    if (eventType === "touchstart") {
       this.swiperRef?.nativeElement.swiper.disable();
-    } else if (eventType === "touchend"){
+    } else if (eventType === "touchend") {
       this.swiperRef?.nativeElement.swiper.enable();
     }
   }
