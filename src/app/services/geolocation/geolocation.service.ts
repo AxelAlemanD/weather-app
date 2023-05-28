@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { City } from 'src/app/models/city.dto';
 import { map } from 'rxjs/operators';
+import { Geolocation, Position } from '@capacitor/geolocation';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,24 @@ export class GeolocationService {
         return formatedCities;
       })
     );
+  }
+
+  async getCurrentLocation(): Promise<City> {
+    let currentLocation: City = {
+      lat: 0,
+      lon: 0,
+      name: '',
+      state: ''
+    };
+    
+    const coordinates = await Geolocation.getCurrentPosition();
+
+    if (coordinates) {
+      currentLocation.lat = coordinates.coords.latitude;
+      currentLocation.lon = coordinates.coords.longitude;
+    }
+
+    return currentLocation;
   }
 
   getStoredCities(): City[] {
