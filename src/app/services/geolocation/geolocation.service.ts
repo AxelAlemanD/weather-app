@@ -35,6 +35,33 @@ export class GeolocationService {
     );
   }
 
+  getStoredCities(): City[] {
+    const cities = localStorage.getItem('cities');
+    if (cities) {
+      return JSON.parse(cities);
+    }
+    return [];
+  }
+
+  addCity(city: City) {
+    let cities = this.getStoredCities();
+    let cityIndex = cities.findIndex(storedCity => {
+      return (storedCity.lat === city.lat) && (storedCity.lon === city.lon);
+    });
+    if (cityIndex < 0) {
+      cities.push(city);
+      localStorage.setItem('cities', JSON.stringify(cities));
+    }
+  }
+
+  removeCity(city: any) {
+    let cities = this.getStoredCities();
+    cities = cities.filter(storedCity => {
+      return (storedCity.lat !== city.lat) && (storedCity.lon !== city.lon);
+    });
+    localStorage.setItem('cities', JSON.stringify(cities));
+  }
+
   private getFormattedCity(city: any): City {
     return {
       lat: city.lat,
