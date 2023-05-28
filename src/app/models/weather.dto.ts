@@ -9,5 +9,6 @@ export interface Weather {
     humidity: number;
     rain: number;
     wind: number;
-    updated_at: string;
+    date: Date;
+    updated_at: Date;
 }

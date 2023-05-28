@@ -14,11 +14,32 @@ export class WeatherService {
   getCurrentWeather(lat: number, lon: number) {
     const url = `${environment.weather_url}weather?lat=${lat}&lon=${lon}&appid=${environment.api_key}`;
     return this.http.get<Weather[]>(url).pipe(
-      map(forecast => this.getFormattedWeather(forecast))
+      map(weather => this.getFormattedWeather(weather))
+    );
+  }
+
+  getForecastForNext5Days(lat: number, lon: number) {
+    const url = `${environment.weather_url}forecast?lat=${lat}&lon=${lon}&appid=${environment.api_key}`;
+    return this.http.get<Weather[]>(url).pipe(
+      map((forecast: any) => {
+        let filteredForecast = forecast.list.filter((day: any) => {
+          return day.dt_txt.includes('12');
+        });
+        const formatedDailyForecast = filteredForecast.map((day: any) => {
+          return this.getFormattedWeather({ coord: forecast.city.coord, ...day });
+        });
+        return formatedDailyForecast;
+      })
     );
   }
 
   private getFormattedWeather(data: any): Weather {
+    let rain: number = 0;
+
+    if (data.rain) {
+      rain = (data.rain['1h']) ? data.rain['1h'] : data.rain['3h'];
+    }
+
     return {
       lat: data.coord.lat,
       lon: data.coord.lat,
@@ -28,9 +49,10 @@ export class WeatherService {
       max_temp: data.main.temp_max,
       min_temp: data.main.temp_min,
       humidity: data.main.humidity,
-      rain: data.rain['1h'],
+      rain,
       wind: data.wind.speed,
-      updated_at: (new Date()).toString()
+      date: new Date(data.dt * 1000),
+      updated_at: new Date()
     };
   }
 
