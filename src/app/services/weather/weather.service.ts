@@ -33,6 +33,49 @@ export class WeatherService {
     );
   }
 
+  getStoredWeathers(): Weather[] {
+    let weathers: any = localStorage.getItem('weathers');
+    if (weathers) {
+      weathers = JSON.parse(weathers);
+      if (weathers) {
+        return weathers.map((weather: Weather) => {
+          return {
+            ...weather,
+            date: new Date(weather.date)
+          };
+        });
+      }
+    }
+    return [];
+  }
+
+  addWeather(weather: Weather) {
+    let weathers = this.getStoredWeathers();
+    let weatherIndex = weathers.findIndex(storedWeather => {
+      return (storedWeather.lat === weather.lat) && (storedWeather.lon === weather.lon) && (storedWeather.date.toLocaleString() === weather.date.toLocaleString());
+    });
+
+    if (typeof weather.date !== 'string') {
+      weather.date = weather.date.toISOString();
+    }
+
+    if (weatherIndex < 0) {
+      weathers.push(weather);
+    } else {
+      weathers[weatherIndex] = weather;
+    }
+
+    localStorage.setItem('weathers', JSON.stringify(weathers));
+  }
+
+  removeWeather(weather: Weather) {
+    let weathers = this.getStoredWeathers();
+    weathers = weathers.filter(storedWeather => {
+      return (storedWeather.lat !== weather.lat) && (storedWeather.lon !== weather.lon) && (storedWeather.date.toLocaleString() !== weather.date.toLocaleString());
+    });
+    localStorage.setItem('weathers', JSON.stringify(weathers));
+  }
+
   private getFormattedWeather(data: any): Weather {
     let rain: number = 0;
 
