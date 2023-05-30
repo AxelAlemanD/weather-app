@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { Weather } from 'src/app/models/weather.dto';
+import { WeatherStatus } from 'src/app/shared/weather-status.enum';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -9,12 +10,26 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class WeatherService {
 
-  constructor(private http: HttpClient) { }
+  private status = new BehaviorSubject<WeatherStatus>(WeatherStatus.Initial);
+  public activeStatus = this.status.asObservable();
+  public lastUpdate: Date = new Date();
+
+  constructor(private http: HttpClient) {
+    let value = localStorage.getItem('last_update');
+    if (value) {
+      this.lastUpdate = new Date(value);
+    } else { 
+      this.lastUpdate = new Date();
+    }
+  }
 
   getCurrentWeather(lat: number, lon: number) {
     const url = `${environment.weather_url}weather?lat=${lat}&lon=${lon}&appid=${environment.api_key}`;
     return this.http.get<Weather[]>(url).pipe(
-      map(weather => this.getFormattedWeather(weather))
+      map(weather => {
+        this.updateDateOfLastUpdate();
+        return this.getFormattedWeather(weather);
+      })
     );
   }
 
@@ -28,6 +43,7 @@ export class WeatherService {
         const formatedDailyForecast = filteredForecast.map((day: any) => {
           return this.getFormattedWeather({ coord: forecast.city.coord, ...day });
         });
+        this.updateDateOfLastUpdate();
         return formatedDailyForecast;
       })
     );
@@ -97,6 +113,15 @@ export class WeatherService {
       date: new Date(data.dt * 1000),
       updated_at: new Date()
     };
+  }
+
+  private updateDateOfLastUpdate() {
+    this.lastUpdate = new Date();
+    localStorage.setItem('last_update', this.lastUpdate.toISOString());
+  }
+
+  changeServiceStatus(activeStatus: WeatherStatus) {
+    this.status.next(activeStatus);
   }
 
 }

@@ -19,8 +19,12 @@
       </app-slide-indicator>
       <div class="options__refresh" style="flex: 4;">
         <span class="small-font text-gray">{{ lastUpdate | date:'h:mm a' }}</span>
-        <ion-button fill="clear" (click)="updateWeatherForecast()">
-          <ion-icon name="refresh-outline"></ion-icon>
+        <ion-button 
+          fill="clear" 
+          class="refresh__button" 
+          [ngClass]="{'refresh__button--active': isUpdatingWeather}" 
+          (click)="updateWeatherForecast()">
+            <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
       </div>
   </div>

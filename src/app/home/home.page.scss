@@ -16,8 +16,16 @@
     align-items: center;
     justify-content: end;
 
-    ion-button::part(native) {
-      padding: 0.5rem;
+    .refresh__button {
+      &::part(native) {
+        padding: 0.5rem;
+      }
+
+      &--active {
+        animation-name: refresh;
+        animation-duration: 2.5s;
+        animation-iteration-count: infinite;
+      }
     }
   }
 }
@@ -30,5 +38,15 @@ swiper-container {
 @media only screen and (min-width: 1024px) {
   ion-searchbar {
     width: 30%;
+  }
+}
+
+@keyframes refresh {
+  from {
+    transform: rotate(45deg);
+  }
+
+  to {
+    transform: rotate(405deg);
   }
 }

@@ -1,8 +1,10 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { GeolocationService } from '../services/geolocation/geolocation.service';
-import { WeatherService } from '../services/weather/weather.service';
 import { City } from '../models/city.dto';
+import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
+import { WeatherStatus } from '../shared/weather-status.enum';
+import { WeatherService } from '../services/weather/weather.service';
 
 @Component({
   selector: 'app-home',
@@ -22,15 +24,18 @@ export class HomePage implements OnInit {
   currentSlide: number = 0;
   showCitySearchResults: boolean = false;
   cities: City[] = [];
+  isUpdatingWeather: boolean = false;
+  @ViewChildren(WeatherForecastComponent) weatherForecastList!: QueryList<WeatherForecastComponent>;
   @ViewChild('swiper') swiperRef: ElementRef | undefined;
 
   constructor(
-    private geolocationService: GeolocationService,
     private weatherService: WeatherService,
+    private geolocationService: GeolocationService,
   ) { }
 
   ngOnInit() {
     this.loadLocations();
+    this.lastUpdate = this.weatherService.lastUpdate;
   }
 
   private async loadLocations() {
@@ -50,7 +55,16 @@ export class HomePage implements OnInit {
   }
 
   updateWeatherForecast() {
-    this.lastUpdate = new Date();
+    this.weatherService.changeServiceStatus(WeatherStatus.Updating);
+    this.weatherService.activeStatus.subscribe(status => {
+      if (status === WeatherStatus.Updating) {
+        this.isUpdatingWeather = true;
+      } else if (status === WeatherStatus.Initial) {
+        this.isUpdatingWeather = false;
+        this.lastUpdate = this.weatherService.lastUpdate;
+      }
+    });
+    this.weatherForecastList.forEach(item => item.updateWeather());
   }
 
   preventSlideChange(eventType: string) {
