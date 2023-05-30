@@ -1,12 +1,14 @@
 .card {
     &__content {
         flex: 1;
+        gap: 1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
     &__item {
+        flex: 3;
         display: flex;
         gap: 0.25rem;
         flex-direction: column;

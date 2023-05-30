@@ -1,6 +1,6 @@
 .card {
     &__title {
-        flex: 2;
+        flex: 1;
         text-align: start;
     }
 
@@ -11,7 +11,6 @@
     }
 
     &__weather {
-        flex: 2;
         display: flex;
         gap: 1rem;
         align-items: center;
