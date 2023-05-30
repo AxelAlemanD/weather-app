@@ -8,6 +8,10 @@
     .current__details {
         @include flex-column;
         width: 100%;
+
+        .degrees__scale {
+            position: absolute;
+        }
     }
 }
 

@@ -1,5 +1,8 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GeolocationService } from '../services/geolocation/geolocation.service';
+import { WeatherService } from '../services/weather/weather.service';
+import { City } from '../models/city.dto';
 
 @Component({
   selector: 'app-home',
@@ -13,15 +16,30 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
     ])
   ]
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
   lastUpdate = new Date();
   currentSlide: number = 0;
   showCitySearchResults: boolean = false;
-  cities = ['city 1', 'city 2', 'city 3'];
+  cities: City[] = [];
   @ViewChild('swiper') swiperRef: ElementRef | undefined;
 
-  constructor() { }
+  constructor(
+    private geolocationService: GeolocationService,
+    private weatherService: WeatherService,
+  ) { }
+
+  ngOnInit() {
+    this.loadLocations();
+  }
+
+  private async loadLocations() {
+    let currentCity = await this.geolocationService.getCurrentLocation();
+    this.geolocationService.getCity(currentCity.lat, currentCity.lon).subscribe(city => {
+      this.geolocationService.addCity(city[0]);
+      this.cities = this.geolocationService.getStoredCities();
+    });
+  }
 
   toggleCitySearchResultsComponent(event: any) {
     this.showCitySearchResults = (event.type === "ionFocus" && event.type !== "ionCancel");

@@ -1,8 +1,11 @@
 <div class="weather">
     <article class="weather__time">
-        <div class="weather__today">
-            <app-current-weather></app-current-weather>
-            <section class="weather__hourly">
+        <div class="weather__today" *ngIf="currentWeather">
+            <app-current-weather 
+                [city]="city"
+                [weather]="currentWeather">
+            </app-current-weather>
+            <!-- <section class="weather__hourly">
                 <h1 class="normal-font text-gray">Today</h1>
                 <div 
                     class="hourly__list" 
@@ -10,22 +13,16 @@
                     (touchend)="preventSlideChange($event)"
                 >
                     <app-hourly-forecast-card></app-hourly-forecast-card>
-                    <app-hourly-forecast-card></app-hourly-forecast-card>
-                    <app-hourly-forecast-card></app-hourly-forecast-card>
-                    <app-hourly-forecast-card></app-hourly-forecast-card>
-                    <app-hourly-forecast-card></app-hourly-forecast-card>
-                    <app-hourly-forecast-card></app-hourly-forecast-card>
                 </div>
-            </section>
+            </section> -->
         </div>
         <section class="weather__week">
             <h1 class="normal-font text-gray">Next 5 day</h1>
-            <div class="week__list">
-                <app-daily-forecast-card></app-daily-forecast-card>
-                <app-daily-forecast-card></app-daily-forecast-card>
-                <app-daily-forecast-card></app-daily-forecast-card>
-                <app-daily-forecast-card></app-daily-forecast-card>
-                <app-daily-forecast-card></app-daily-forecast-card>
+            <div class="week__list" *ngIf="forecast">
+                <app-daily-forecast-card
+                    *ngFor="let weather of forecast"
+                    [weather]="weather">
+                </app-daily-forecast-card>
             </div>
         </section>
     </article>

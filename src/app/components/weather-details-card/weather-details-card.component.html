@@ -2,17 +2,17 @@
     <div class="card__content">
         <div class="card__item">
             <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/wind.png" alt="Wind icon">
-            <span class="normal-font text-bold">2 km/h</span>
+            <span class="normal-font text-bold">{{ weather?.wind }} km/h</span>
             <span class="small-font text-gray">Wind</span>
         </div>
         <div class="card__item">
             <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/drop.png" alt="Huimidity icon">
-            <span class="normal-font text-bold">18%</span>
+            <span class="normal-font text-bold">{{ weather?.humidity }} %</span>
             <span class="small-font text-gray">Humidity</span>
         </div>
         <div class="card__item">
             <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/umbrella.png" alt="Rain icon">
-            <span class="normal-font text-bold">100%</span>
+            <span class="normal-font text-bold">{{ weather?.rain }} %</span>
             <span class="small-font text-gray">Rain</span>
         </div>
     </div>

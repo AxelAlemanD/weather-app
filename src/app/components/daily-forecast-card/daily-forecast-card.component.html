@@ -1,11 +1,14 @@
 <div class="card">
-    <span class="card__title normal-font text-dark text-bold">Wednesday</span>
+    <span class="card__title normal-font text-dark text-bold">{{ weather?.date | date:'EEEE' }}</span>
     <div class="card__content">
-        <app-weather-details-card style="flex: 1;"></app-weather-details-card>
+        <app-weather-details-card 
+            [weather]="weather"
+            style="flex: 1;">
+        </app-weather-details-card>
     </div>
     <div class="card__weather">
         <p>
-            <span class="text-gray">22°</span> / <span class="normal-font">26°</span>
+            <span class="text-gray">{{ weather?.min_temp }}°</span> / <span class="normal-font">{{ weather?.max_temp }}°</span>
         </p>
         <img class="image-sm" src="../../../assets/weather-states/clear-day.svg" alt="Weather">
     </div>

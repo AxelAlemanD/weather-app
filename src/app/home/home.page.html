@@ -32,7 +32,10 @@
     (slidechangetransitionstart)="updateCurrentSlide()"
   >
     <swiper-slide *ngFor="let city of cities">
-      <app-weather-forecast (onClickEvent)="preventSlideChange($event)"></app-weather-forecast>
+      <app-weather-forecast 
+        [city]="city"
+        (onClickEvent)="preventSlideChange($event)">
+      </app-weather-forecast>
     </swiper-slide>
   </swiper-container>
 
