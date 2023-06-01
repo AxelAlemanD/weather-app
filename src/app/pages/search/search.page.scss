@@ -1,0 +1,28 @@
+@import "/src/theme/mixins.scss";
+
+.cities {
+    @include flex-column;
+    justify-content: center;
+}
+
+.cities__added {
+    display: flex;
+    gap: 0.7rem;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+}
+
+.cities__list {
+    @include flex-column;
+    gap: 0.7rem;
+}
+
+@media only screen and (min-width: 1024px) {
+    .cities {
+        width: 55%;
+        margin: 0 auto;
+    }
+}
