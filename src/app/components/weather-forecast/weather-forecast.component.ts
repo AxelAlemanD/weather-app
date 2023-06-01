@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { City } from 'src/app/models/city.dto';
 import { Weather } from 'src/app/models/weather.dto';
 import { WeatherService } from 'src/app/services/weather/weather.service';
-import { WeatherStatus } from 'src/app/shared/weather-status.enum';
+import { Statuses } from 'src/app/shared/statuses.enum';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -39,7 +39,7 @@ export class WeatherForecastComponent implements OnInit {
   private loadForecast(lat: number, lon: number) {
     this.weatherService.getForecastForNext5Days(lat, lon).subscribe(forecast => {
       this.forecast = forecast;
-      this.weatherService.changeServiceStatus(WeatherStatus.Initial);
+      this.weatherService.changeServiceStatus(Statuses.Done);
     });
   }
 

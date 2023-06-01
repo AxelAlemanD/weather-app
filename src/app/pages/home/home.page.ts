@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { City } from '../../models/city.dto';
 import { WeatherForecastComponent } from '../../components/weather-forecast/weather-forecast.component';
-import { WeatherStatus } from '../../shared/weather-status.enum';
+import { Statuses } from '../../shared/statuses.enum';
 import { WeatherService } from '../../services/weather/weather.service';
 
 @Component({
@@ -42,11 +42,11 @@ export class HomePage implements OnInit {
   }
 
   updateWeatherForecast() {
-    this.weatherService.changeServiceStatus(WeatherStatus.Updating);
+    this.weatherService.changeServiceStatus(Statuses.Loading);
     this.weatherService.activeStatus.subscribe(status => {
-      if (status === WeatherStatus.Updating) {
+      if (status === Statuses.Loading) {
         this.isUpdatingWeather = true;
-      } else if (status === WeatherStatus.Initial) {
+      } else if (status === Statuses.Done) {
         this.isUpdatingWeather = false;
         this.lastUpdate = this.weatherService.lastUpdate;
       }
