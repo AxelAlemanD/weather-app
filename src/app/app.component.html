@@ -1,3 +1,13 @@
 <ion-app>
+  <section class="weather__search">
+    <ion-searchbar 
+      (ionFocus)="toggleCitySearchResultsComponent($event)"
+      (ionCancel)="toggleCitySearchResultsComponent($event)"
+      [showCancelButton]="showCitySearchResults ? 'always' : 'never'"
+      placeholder="Search" 
+      color="light" 
+      class="custom">
+    </ion-searchbar>
+  </section>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

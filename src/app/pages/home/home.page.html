@@ -1,16 +1,6 @@
 <ion-content [fullscreen]="true" id="content">
-  <section class="weather__search">
-    <ion-searchbar 
-      (ionFocus)="toggleCitySearchResultsComponent($event)"
-      (ionCancel)="toggleCitySearchResultsComponent($event)"
-      [showCancelButton]="showCitySearchResults ? 'always' : 'never'"
-      placeholder="Search" 
-      color="light" 
-      class="custom">
-    </ion-searchbar>
-  </section>
 
-  <div *ngIf="!showCitySearchResults" [@fadeInOut] class="weather__options">
+  <div class="weather__options">
     <app-temperature-scale-switch style="flex: 4;"></app-temperature-scale-switch>
     <app-slide-indicator 
       [cities]="cities" 
@@ -31,8 +21,6 @@
 
   <swiper-container
     #swiper
-    [@fadeInOut]
-    *ngIf="!showCitySearchResults"
     (slidechangetransitionstart)="updateCurrentSlide()"
   >
     <swiper-slide *ngFor="let city of cities">
@@ -42,9 +30,4 @@
       </app-weather-forecast>
     </swiper-slide>
   </swiper-container>
-
-  <app-city-search-results 
-    [@fadeInOut]
-    *ngIf="showCitySearchResults">
-  </app-city-search-results>
 </ion-content>

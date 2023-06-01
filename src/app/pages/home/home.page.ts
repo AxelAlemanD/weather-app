@@ -1,4 +1,3 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { City } from '../../models/city.dto';
@@ -9,20 +8,12 @@ import { WeatherService } from '../../services/weather/weather.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({ opacity: 0 })),
-      state('*', style({ opacity: 1 })),
-      transition('void <=> *', animate('250ms ease-in-out'))
-    ])
-  ]
+  styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
 
   lastUpdate = new Date();
   currentSlide: number = 0;
-  showCitySearchResults: boolean = false;
   cities: City[] = [];
   isUpdatingWeather: boolean = false;
   @ViewChildren(WeatherForecastComponent) weatherForecastList!: QueryList<WeatherForecastComponent>;
@@ -44,10 +35,6 @@ export class HomePage implements OnInit {
       this.geolocationService.addCity(city[0]);
       this.cities = this.geolocationService.getStoredCities();
     });
-  }
-
-  toggleCitySearchResultsComponent(event: any) {
-    this.showCitySearchResults = (event.type === "ionFocus" && event.type !== "ionCancel");
   }
 
   updateCurrentSlide() {

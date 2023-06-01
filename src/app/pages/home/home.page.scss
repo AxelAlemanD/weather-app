@@ -1,10 +1,5 @@
 @import "/src/theme/mixins.scss";
 
-.weather__search {
-  display: flex;
-  justify-content: center;
-}
-
 .weather__options {
   display: flex;
   align-items: center;
@@ -32,13 +27,6 @@
 
 swiper-container {
   overflow-x: hidden;
-}
-
-
-@media only screen and (min-width: 1024px) {
-  ion-searchbar {
-    width: 30%;
-  }
 }
 
 @keyframes refresh {
