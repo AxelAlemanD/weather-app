@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -9,18 +9,25 @@ register();
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  showCitySearchResults: boolean = false;
+  currentRoute: string = ''
 
   constructor(private router: Router) { }
 
-  toggleCitySearchResultsComponent(event: any) {
-    this.showCitySearchResults = (event.type === "ionFocus" && event.type !== "ionCancel");
-    if (this.showCitySearchResults) {
-      this.router.navigate(['/search']);
-    } else {
-      this.router.navigate(['/home']);
-    }
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+  }
+
+  togglePageToShow(event: any) {
+    this.router.navigate([this.getRouteNameToDisplay(event)]);
+  }
+
+  private getRouteNameToDisplay(event: any): string {
+    return (event.type === "ionCancel") ? '/home' : '/search';
   }
 }
