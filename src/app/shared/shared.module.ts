@@ -10,9 +10,11 @@ import { TemperatureScaleSwitchComponent } from '../components/temperature-scale
 import { CurrentWeatherComponent } from '../components/current-weather/current-weather.component';
 import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
 import { SlideIndicatorComponent } from '../components/slide-indicator/slide-indicator.component';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 @NgModule({
   declarations: [
+    LoaderComponent,
     WeatherForecastComponent,
     CurrentWeatherComponent,
     DailyForecastCardComponent,
@@ -22,6 +24,7 @@ import { SlideIndicatorComponent } from '../components/slide-indicator/slide-ind
     SlideIndicatorComponent
   ],
   exports: [
+    LoaderComponent,
     WeatherForecastComponent,
     CurrentWeatherComponent,
     DailyForecastCardComponent,
