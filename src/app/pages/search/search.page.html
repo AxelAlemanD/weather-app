@@ -1,19 +1,33 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" id="content">
   <div class="cities">
-    <section class="cities__added">
-      <ion-button color="light">Ciudad Victoria</ion-button>
-      <ion-button color="light">Reynosa</ion-button>
-      <ion-button color="light">Matamoros</ion-button>
+
+    <section class="cities__added" *ngIf="storedCities.length">
+      <ion-button color="light" *ngFor="let city of storedCities">
+        {{ city.name }}
+      </ion-button>
     </section>
-    <section class="cities__found">
+
+    <section class="cities__found" *ngIf="citiesAndWeatherFound.length">
       <h1 class="normal-font text-gray">Results</h1>
       <div class="cities__list">
-        <app-daily-forecast-card></app-daily-forecast-card>
-        <app-daily-forecast-card></app-daily-forecast-card>
-        <app-daily-forecast-card></app-daily-forecast-card>
-        <app-daily-forecast-card></app-daily-forecast-card>
-        <app-daily-forecast-card></app-daily-forecast-card>
+        <app-daily-forecast-card 
+          *ngFor="let item of citiesAndWeatherFound" 
+          [city]="item.city"
+          [weather]="item.weather"
+        >
+        </app-daily-forecast-card>
       </div>
+    </section>
+
+    <section class="cities__found--loading text-center" *ngIf="status === statuses.Loading">
+      <app-loader
+        [message]="'Looking for matches. This may take a moment'">
+      </app-loader>
+    </section>
+
+    <section class="cities__found--error text-center" *ngIf="!citiesAndWeatherFound.length && status !== statuses.Loading">
+      <span class="normal-font text-dark text-bold">No results to show</span>
+      <span class="normal-font text-gray">Please check spelling or try different keywords</span>
     </section>
   </div>
 </ion-content>

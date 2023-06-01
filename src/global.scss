@@ -73,6 +73,19 @@ h3,
   &-capitalize {
     text-transform: capitalize;
   }
+
+  /* Text align */
+  &-start {
+    text-align: start;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-end {
+    text-align: end;
+  }
 }
 
 /* Image sizes */
@@ -126,6 +139,7 @@ ion-button {
 swiper-container {
   width: 100%;
   overflow: auto;
+
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 0;

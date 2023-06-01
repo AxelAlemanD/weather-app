@@ -3,21 +3,27 @@
 .cities {
     @include flex-column;
     justify-content: center;
-}
 
-.cities__added {
-    display: flex;
-    gap: 0.7rem;
-    overflow: auto;
+    &__added {
+        display: flex;
+        gap: 0.7rem;
+        overflow: auto;
 
-    &::-webkit-scrollbar {
-        -webkit-appearance: none;
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
     }
-}
 
-.cities__list {
-    @include flex-column;
-    gap: 0.7rem;
+    &__list {
+        @include flex-column;
+        gap: 0.7rem;
+    }
+
+    &__found--error {
+        @include flex-column;
+        margin-top: 1rem;
+        gap: 0.5rem;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
