@@ -1,10 +1,10 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { GeolocationService } from '../services/geolocation/geolocation.service';
-import { City } from '../models/city.dto';
-import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
-import { WeatherStatus } from '../shared/weather-status.enum';
-import { WeatherService } from '../services/weather/weather.service';
+import { GeolocationService } from '../../services/geolocation/geolocation.service';
+import { City } from '../../models/city.dto';
+import { WeatherForecastComponent } from '../../components/weather-forecast/weather-forecast.component';
+import { WeatherStatus } from '../../shared/weather-status.enum';
+import { WeatherService } from '../../services/weather/weather.service';
 
 @Component({
   selector: 'app-home',
