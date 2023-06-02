@@ -29,16 +29,31 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .weather__time {
-    gap: 2rem;
-    flex-direction: row;
 
-    .weather__today {
+  .weather {
+    height: 100%;
+
+    &__time {
+      gap: 2rem;
+      flex-direction: row;
+      height: 100%;
+    }
+
+    &__today {
       width: 45%;
     }
 
-    .weather__week {
+    &__week {
       width: 55%;
+
+      .week__list {
+        overflow: auto;
+        height: 90%;
+
+        &::-webkit-scrollbar {
+          -webkit-appearance: none;
+        }
+      }
     }
   }
 }
