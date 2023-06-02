@@ -1,0 +1,22 @@
+<ion-content [fullscreen]="true" id="content">
+
+  <div class="city__options">
+    <ion-button fill="clear" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    
+    <ion-button color="light" (click)="addToList()" *ngIf="!isCityStored">
+      Add to list
+      <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+    </ion-button>
+    
+    <ion-button color="light" (click)="removeFromTheList()" *ngIf="isCityStored">
+      Remove
+      <ion-icon slot="end" name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <app-weather-forecast *ngIf="city" [city]="city">
+  </app-weather-forecast>
+
+</ion-content>

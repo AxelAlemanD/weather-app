@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { City } from 'src/app/models/city.dto';
 import { Weather } from 'src/app/models/weather.dto';
 
@@ -12,8 +13,14 @@ export class DailyForecastCardComponent implements OnInit {
   @Input() city: City | undefined;
   @Input() weather: Weather | undefined;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void { }
+
+  showCity(city: City | undefined) {
+    if (city) {
+      this.router.navigate(['/city', city.lat, city.lon]);
+    }
+  }
 
 }

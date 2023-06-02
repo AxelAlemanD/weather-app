@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [ngClass]="{'cursor-pointer': city}" (click)="showCity(city)">
 
     <div class="card__title" *ngIf="city">
         <span class="normal-font text-dark text-bold">

@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
   },
+  {
+    path: 'city/:lat/:lon',
+    loadChildren: () => import('./pages/city/city.module').then( m => m.CityPageModule)
+  },
 ];
 
 @NgModule({

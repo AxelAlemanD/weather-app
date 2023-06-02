@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, merge } from 'rxjs';
 import { City } from 'src/app/models/city.dto';
 import { CityAndWeather } from 'src/app/models/cityAndWeather.dto';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
@@ -37,11 +37,15 @@ export class SearchPage implements OnInit {
           distinctUntilChanged()
         )
         .subscribe(() => {
+          this.clearLastResults();
           this.searchCities();
         });
 
-      fromEvent(this.searchbar, 'ionClear').subscribe(() => {
-        this.citiesAndWeatherFound = [];
+      merge(
+        fromEvent(this.searchbar, 'ionClear'),
+        fromEvent(this.searchbar, 'ionCancel')
+      ).subscribe(() => {
+        this.clearLastResults();
         this.status = Statuses.Done;
       });
     }
@@ -54,7 +58,7 @@ export class SearchPage implements OnInit {
         this.loadCitiesWeather(cities);
       });
     } else {
-      this.citiesAndWeatherFound = [];
+      this.clearLastResults();
     }
   }
 
@@ -70,6 +74,10 @@ export class SearchPage implements OnInit {
 
   private loadStoredCities() {
     this.storedCities = this.geolocationService.getStoredCities();
+  }
+
+  private clearLastResults() {
+    this.citiesAndWeatherFound = [];
   }
 
 }
