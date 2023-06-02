@@ -4,7 +4,7 @@ import { City } from 'src/app/models/city.dto';
 import { CityAndWeather } from 'src/app/models/cityAndWeather.dto';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { WeatherService } from 'src/app/services/weather/weather.service';
-import { Statuses } from 'src/app/shared/statuses.enum';
+import { Statuses } from 'src/app/shared/utils/statuses.enum';
 
 @Component({
   selector: 'app-search',

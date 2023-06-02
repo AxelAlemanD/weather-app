@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { Weather } from 'src/app/models/weather.dto';
-import { Statuses } from 'src/app/shared/statuses.enum';
+import { Statuses } from 'src/app/shared/utils/statuses.enum';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({

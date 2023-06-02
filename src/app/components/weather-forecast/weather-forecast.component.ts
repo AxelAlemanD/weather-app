@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { City } from 'src/app/models/city.dto';
 import { Weather } from 'src/app/models/weather.dto';
 import { WeatherService } from 'src/app/services/weather/weather.service';
-import { Statuses } from 'src/app/shared/statuses.enum';
+import { Statuses } from 'src/app/shared/utils/statuses.enum';
 
 @Component({
   selector: 'app-weather-forecast',

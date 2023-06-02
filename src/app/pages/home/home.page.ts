@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { City } from '../../models/city.dto';
 import { WeatherForecastComponent } from '../../components/weather-forecast/weather-forecast.component';
-import { Statuses } from '../../shared/statuses.enum';
+import { Statuses } from '../../shared/utils/statuses.enum';
 import { WeatherService } from '../../services/weather/weather.service';
 
 @Component({
