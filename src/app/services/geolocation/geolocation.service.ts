@@ -43,7 +43,7 @@ export class GeolocationService {
       name: '',
       state: ''
     };
-    
+
     const coordinates = await Geolocation.getCurrentPosition();
 
     if (coordinates) {
@@ -79,6 +79,12 @@ export class GeolocationService {
       return (storedCity.lat !== city.lat) && (storedCity.lon !== city.lon);
     });
     localStorage.setItem('cities', JSON.stringify(cities));
+  }
+
+  isCityStored(city: City): boolean {
+    const cities = this.getStoredCities();
+    let index = cities.findIndex(storedCity => (storedCity.lat === city.lat) && (storedCity.lon === city.lon));
+    return index >= 0;
   }
 
   private getFormattedCity(city: any): City {
