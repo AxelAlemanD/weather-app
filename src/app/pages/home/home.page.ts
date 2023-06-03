@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { City } from '../../models/city.dto';
 import { WeatherForecastComponent } from '../../components/weather-forecast/weather-forecast.component';
-import { Statuses } from '../../shared/utils/statuses.enum';
 import { WeatherService } from '../../services/weather/weather.service';
+import { Alerts } from 'src/app/shared/utils/alerts.util';
 
 @Component({
   selector: 'app-home',
@@ -30,28 +30,34 @@ export class HomePage implements OnInit {
   }
 
   private async loadLocations() {
-    let currentCity = await this.geolocationService.getCurrentLocation();
-    this.geolocationService.getCity(currentCity.lat, currentCity.lon).subscribe(city => {
-      this.geolocationService.addCity(city[0]);
+    try {
+      let currentCity = await this.geolocationService.getCurrentLocation();
+      this.geolocationService.getCity(currentCity.lat, currentCity.lon).subscribe({
+        next: (city: City[]) => this.geolocationService.addCity(city[0]),
+        error: (e) => Alerts.showNetworkErrorToast(),
+      });
+    } catch (error) {
+      Alerts.showToast(
+        'No access to geolocation. Check the status and permissions of the geolocation',
+        2000,
+        'top',
+        'warning'
+      );
+    } finally {
       this.cities = this.geolocationService.getStoredCities();
-    });
+    }
   }
 
   updateCurrentSlide() {
     this.currentSlide = this.swiperRef?.nativeElement.swiper.activeIndex;
   }
 
-  updateWeatherForecast() {
-    this.weatherService.changeServiceStatus(Statuses.Loading);
-    this.weatherService.activeStatus.subscribe(status => {
-      if (status === Statuses.Loading) {
-        this.isUpdatingWeather = true;
-      } else if (status === Statuses.Done) {
-        this.isUpdatingWeather = false;
-        this.lastUpdate = this.weatherService.lastUpdate;
-      }
-    });
-    this.weatherForecastList.forEach(item => item.updateWeather());
+  async updateWeatherForecast() {
+    this.isUpdatingWeather = true;
+    const promises = this.weatherForecastList.map(item => item.updateWeather());
+    await Promise.all(promises);
+    this.isUpdatingWeather = false;
+    this.lastUpdate = this.weatherService.lastUpdate;
   }
 
   preventSlideChange(eventType: string) {

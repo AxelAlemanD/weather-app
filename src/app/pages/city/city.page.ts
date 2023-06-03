@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { City } from 'src/app/models/city.dto';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
+import { Alerts } from 'src/app/shared/utils/alerts.util';
 
 @Component({
   selector: 'app-city',
@@ -29,10 +30,12 @@ export class CityPage implements OnInit {
   }
 
   private loadCity(lat: number, lon: number) {
-    this.geolocationService.getCity(lat, lon)
-    .subscribe(city => {
-      this.city = city[0];
-      this.isCityStored = this.geolocationService.isCityStored(this.city);
+    this.geolocationService.getCity(lat, lon).subscribe({
+      next: (city: City[]) => {
+        this.city = city[0];
+        this.isCityStored = this.geolocationService.isCityStored(this.city);
+      },
+      error: (e) => Alerts.showNetworkErrorToast(),
     });
   }
 
@@ -44,6 +47,7 @@ export class CityPage implements OnInit {
     if (this.city) {
       this.geolocationService.addCity(this.city);
       this.isCityStored = this.geolocationService.isCityStored(this.city);
+      Alerts.showToast('The city has been saved!', 2000, 'top', 'success');
     }
   }
 
@@ -51,6 +55,7 @@ export class CityPage implements OnInit {
     if (this.city) {
       this.geolocationService.removeCity(this.city);
       this.isCityStored = this.geolocationService.isCityStored(this.city);
+      Alerts.showToast('The city has been removed!', 2000, 'top', 'success');
     }
   }
 

@@ -54,8 +54,9 @@ export class SearchPage implements OnInit {
   searchCities() {
     if (this.searchbar.value !== '') {
       this.status = Statuses.Loading;
-      this.geolocationService.getCities(this.searchbar.value).subscribe(cities => {
-        this.loadCitiesWeather(cities);
+      this.geolocationService.getCities(this.searchbar.value).subscribe({
+        next: (cities: City[]) => this.loadCitiesWeather(cities),
+        error: (e) => this.status = Statuses.Error,
       });
     } else {
       this.clearLastResults();

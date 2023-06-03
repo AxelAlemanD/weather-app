@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { map } from 'rxjs';
 import { Weather } from 'src/app/models/weather.dto';
-import { Statuses } from 'src/app/shared/utils/statuses.enum';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -10,8 +9,6 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class WeatherService {
 
-  private status = new BehaviorSubject<Statuses>(Statuses.Done);
-  public activeStatus = this.status.asObservable();
   public lastUpdate: Date = new Date();
 
   constructor(private http: HttpClient) {
@@ -118,10 +115,6 @@ export class WeatherService {
   private updateDateOfLastUpdate() {
     this.lastUpdate = new Date();
     localStorage.setItem('last_update', this.lastUpdate.toISOString());
-  }
-
-  changeServiceStatus(activeStatus: Statuses) {
-    this.status.next(activeStatus);
   }
 
 }

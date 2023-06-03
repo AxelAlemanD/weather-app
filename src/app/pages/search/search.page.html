@@ -25,9 +25,14 @@
       </app-loader>
     </section>
 
-    <section class="cities__found--error text-center" *ngIf="!citiesAndWeatherFound.length && status !== statuses.Loading">
+    <section class="cities__found--error text-center" *ngIf="!citiesAndWeatherFound.length && status === statuses.Done">
       <span class="normal-font text-dark text-bold">No results to show</span>
       <span class="normal-font text-gray">Please check spelling or try different keywords</span>
+    </section>
+
+    <section class="cities__found--error text-center" *ngIf="!citiesAndWeatherFound.length && status === statuses.Error">
+      <span class="normal-font text-dark text-bold">Connection lost!.</span>
+      <span class="normal-font text-gray">Check your internet connection or try again later</span>
     </section>
   </div>
 </ion-content>

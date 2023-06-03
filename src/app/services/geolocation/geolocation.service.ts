@@ -44,12 +44,15 @@ export class GeolocationService {
       state: ''
     };
 
-    const coordinates = await Geolocation.getCurrentPosition();
-
-    if (coordinates) {
-      currentLocation.lat = coordinates.coords.latitude;
-      currentLocation.lon = coordinates.coords.longitude;
-    }
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();  
+      if (coordinates) {
+        currentLocation.lat = coordinates.coords.latitude;
+        currentLocation.lon = coordinates.coords.longitude;
+      }
+    } catch (error) {
+      throw new Error('No access to geolocation. Check the status and permissions of the geolocation');
+    }    
 
     return currentLocation;
   }
