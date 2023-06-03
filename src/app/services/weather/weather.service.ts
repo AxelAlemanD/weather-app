@@ -21,7 +21,7 @@ export class WeatherService {
   }
 
   getCurrentWeather(lat: number, lon: number) {
-    const url = `${environment.weather_url}weather?lat=${lat}&lon=${lon}&appid=${environment.api_key}`;
+    const url = `${environment.weather_url}weather?lat=${lat}&lon=${lon}&appid=${environment.api_key}&units=imperial`;
     return this.http.get<Weather[]>(url).pipe(
       map(weather => {
         this.updateDateOfLastUpdate();
@@ -31,7 +31,7 @@ export class WeatherService {
   }
 
   getForecastForNext5Days(lat: number, lon: number) {
-    const url = `${environment.weather_url}forecast?lat=${lat}&lon=${lon}&appid=${environment.api_key}`;
+    const url = `${environment.weather_url}forecast?lat=${lat}&lon=${lon}&appid=${environment.api_key}&units=imperial`;
     return this.http.get<Weather[]>(url).pipe(
       map((forecast: any) => {
         let filteredForecast = forecast.list.filter((day: any) => {
