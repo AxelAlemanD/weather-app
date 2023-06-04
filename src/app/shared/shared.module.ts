@@ -11,6 +11,7 @@ import { CurrentWeatherComponent } from '../components/current-weather/current-w
 import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
 import { SlideIndicatorComponent } from '../components/slide-indicator/slide-indicator.component';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { TemperatureConverterPipe } from './pipes/temperature-converter/temperature-converter.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoaderComponent } from '../components/loader/loader.component';
     HourlyForecastCardComponent,
     WeatherDetailsCardComponent,
     TemperatureScaleSwitchComponent,
-    SlideIndicatorComponent
+    SlideIndicatorComponent,
+    TemperatureConverterPipe
   ],
   exports: [
     LoaderComponent,

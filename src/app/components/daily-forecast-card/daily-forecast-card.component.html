@@ -22,7 +22,9 @@
 
     <div class="card__weather">
         <p>
-            <span class="text-gray">{{ weather?.min_temp }}°</span> / <span class="normal-font">{{ weather?.max_temp }}°</span>
+            <span class="text-gray">{{ weather?.min_temp | temperatureConverter:activeScale }}°</span>
+             / 
+            <span class="normal-font">{{ weather?.max_temp | temperatureConverter:activeScale }}°</span>
         </p>
         <img class="image-sm" src="../../../assets/weather-states/clear-day.svg" alt="Weather">
     </div>

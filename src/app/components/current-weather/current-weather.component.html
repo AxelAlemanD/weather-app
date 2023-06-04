@@ -6,7 +6,8 @@
                 {{ city?.name }}<span *ngIf="city?.state">, {{ city?.state }}</span>
             </h3>
             <h1>
-                {{ weather?.temp }} <span class="degrees__scale large-font text-bold">°F</span>
+                {{ weather?.temp | temperatureConverter:activeScale }} 
+                <span class="degrees__scale large-font text-bold">°{{ activeScale }}</span>
             </h1>
         </div>
         <app-weather-details-card 

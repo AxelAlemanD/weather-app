@@ -1,3 +1,6 @@
-<ion-toggle mode="ios" class="ios">
-    
-</ion-toggle>
+<ion-toggle 
+    mode="ios" 
+    class="ios" 
+    [checked]="activeScale === 'F'"
+    (ionChange)="toggleTemperatureScale($event)"
+></ion-toggle>
