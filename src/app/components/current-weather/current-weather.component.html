@@ -1,4 +1,4 @@
-<section class="weather__current">
+<section class="weather__current" *ngIf="weather">
     <img class="image-lg" src="../../assets/weather-states/clear-day.svg" alt="Current Weather">
     <div class="current__details">
         <div class="current__degrees">
@@ -7,7 +7,7 @@
                 {{ city?.state }}
             </span>
             <h1>
-                {{ weather?.temp | temperatureConverter:activeScale }} 
+                {{ weather.temp | temperatureConverter:activeScale }} 
                 <span class="degrees__scale large-font text-bold">°{{ activeScale }}</span>
             </h1>
         </div>
@@ -15,5 +15,19 @@
             [weather]="weather"
             [showIcons]="true">
         </app-weather-details-card>
+    </div>
+</section>
+
+<section class="weather__current" *ngIf="!weather">
+    <ion-thumbnail style="width: 9.375rem; height: 9.375rem;">
+        <ion-skeleton-text [animated]="true" style="width: 100%; height: 100%"></ion-skeleton-text>
+    </ion-thumbnail>
+    <div class="current__details">
+        <div class="current__degrees">
+            <ion-skeleton-text [animated]="true" style="width: 70%; height: 2.2rem"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 50%; height: 1.8rem"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 30%; height: 4rem"></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text [animated]="true" style="width: 100%; height: 5.4rem"></ion-skeleton-text>
     </div>
 </section>

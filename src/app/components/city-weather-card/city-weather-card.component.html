@@ -1,4 +1,4 @@
-<div class="card" [ngClass]="{'cursor-pointer': city}" (click)="showCity(city)">
+<div *ngIf="weather" class="card" [ngClass]="{'cursor-pointer': city}" (click)="showCity(city)">
 
     <div class="card__title" *ngIf="city">
         <span class="normal-font text-dark text-bold">
@@ -18,10 +18,16 @@
 
     <div class="card__weather">
         <p>
-            <span class="text-gray">{{ weather?.min_temp | temperatureConverter:activeScale }}°</span>
+            <span class="text-gray">{{ weather.min_temp | temperatureConverter:activeScale }}°</span>
              / 
-            <span class="normal-font">{{ weather?.max_temp | temperatureConverter:activeScale }}°</span>
+            <span class="normal-font">{{ weather.max_temp | temperatureConverter:activeScale }}°</span>
         </p>
         <img class="image-sm" src="../../../assets/weather-states/clear-day.svg" alt="Weather">
     </div>
 </div>
+
+<ion-skeleton-text 
+    *ngIf="!weather"
+    [animated]="true" 
+    style="width: 100%; height: 5.4rem">
+</ion-skeleton-text>

@@ -149,6 +149,11 @@ ion-button {
   }
 }
 
+/* Skeleton styles */
+ion-skeleton-text {
+  --border-radius: 0.5rem;
+}
+
 /* Swiper styles */
 swiper-container {
   width: 100%;

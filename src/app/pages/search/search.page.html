@@ -7,14 +7,12 @@
       </ion-button>
     </section>
 
-    <section class="cities__found" *ngIf="citiesAndWeatherFound.length">
+    <section class="cities__found" *ngIf="cities.length">
       <h1 class="normal-font text-gray">Results</h1>
       <div class="cities__list">
         <app-city-weather-card 
-          *ngFor="let item of citiesAndWeatherFound" 
-          [city]="item.city"
-          [weather]="item.weather"
-        >
+          *ngFor="let city of cities" 
+          [city]="city">
         </app-city-weather-card >
       </div>
     </section>
@@ -25,12 +23,12 @@
       </app-loader>
     </section>
 
-    <section class="cities__found--error text-center" *ngIf="!citiesAndWeatherFound.length && status === statuses.Done">
+    <section class="cities__found--error text-center" *ngIf="!cities.length && status === statuses.Done">
       <span class="normal-font text-dark text-bold">No results to show</span>
       <span class="normal-font text-gray">Please check spelling or try different keywords</span>
     </section>
 
-    <section class="cities__found--error text-center" *ngIf="!citiesAndWeatherFound.length && status === statuses.Error">
+    <section class="cities__found--error text-center" *ngIf="!cities.length && status === statuses.Error">
       <span class="normal-font text-dark text-bold">Connection lost!.</span>
       <span class="normal-font text-gray">Check your internet connection or try again later</span>
     </section>

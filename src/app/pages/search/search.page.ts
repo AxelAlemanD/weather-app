@@ -3,7 +3,6 @@ import { debounceTime, distinctUntilChanged, fromEvent, merge } from 'rxjs';
 import { City } from 'src/app/models/city.dto';
 import { CityAndWeather } from 'src/app/models/cityAndWeather.dto';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
-import { WeatherService } from 'src/app/services/weather/weather.service';
 import { Statuses } from 'src/app/shared/utils/statuses.enum';
 
 @Component({
@@ -15,14 +14,12 @@ export class SearchPage implements OnInit {
 
   storedCities: City[] = [];
   citiesAndWeatherFound: CityAndWeather[] = [];
+  cities: City[] = [];
   status: Statuses = Statuses.Done;
   statuses = Statuses;
   private searchbar: any;
 
-  constructor(
-    private weatherService: WeatherService,
-    private geolocationService: GeolocationService
-  ) { }
+  constructor(private geolocationService: GeolocationService) { }
 
   ngOnInit() {
     this.loadStoredCities();
@@ -55,7 +52,10 @@ export class SearchPage implements OnInit {
     if (this.searchbar.value !== '') {
       this.status = Statuses.Loading;
       this.geolocationService.getCities(this.searchbar.value).subscribe({
-        next: (cities: City[]) => this.loadCitiesWeather(cities),
+        next: (cities: City[]) => { 
+          this.cities = cities; 
+          this.status = Statuses.Done;
+        },
         error: (e) => this.status = Statuses.Error,
       });
     } else {
@@ -63,22 +63,12 @@ export class SearchPage implements OnInit {
     }
   }
 
-
-  private loadCitiesWeather(cities: City[]) {
-    cities.forEach(city => {
-      this.weatherService.getCurrentWeather(city.lat, city.lon).subscribe(weather => {
-        this.citiesAndWeatherFound.push({ city, weather });
-        this.status = Statuses.Done;
-      });
-    });
-  }
-
   private loadStoredCities() {
     this.storedCities = this.geolocationService.getStoredCities();
   }
 
   private clearLastResults() {
-    this.citiesAndWeatherFound = [];
+    this.cities = [];
   }
 
 }

@@ -10,6 +10,10 @@
         width: 100%;
 
         .current__degrees {
+            @include flex-column;
+            align-items: center;
+            gap: 0;
+
             h3 {
                 margin-bottom: 0.25rem;
             }
@@ -18,8 +22,6 @@
                 position: absolute;
             }
         }
-
-
     }
 }
 
@@ -28,5 +30,11 @@
         flex-direction: row;
         text-align: start;
         gap: 1rem;
+
+        .current__details {
+            .current__degrees {
+                display: block;
+            }
+        }
     }
 }

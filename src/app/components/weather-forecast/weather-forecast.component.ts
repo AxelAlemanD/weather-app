@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { City } from 'src/app/models/city.dto';
 import { Weather } from 'src/app/models/weather.dto';
 import { WeatherService } from 'src/app/services/weather/weather.service';
 import { Alerts } from 'src/app/shared/utils/alerts.util';
 import { Statuses } from 'src/app/shared/utils/statuses.enum';
+import { CurrentWeatherComponent } from '../current-weather/current-weather.component';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -12,10 +13,10 @@ import { Statuses } from 'src/app/shared/utils/statuses.enum';
 })
 export class WeatherForecastComponent implements OnInit {
 
-  currentWeather: Weather | undefined;
   forecast: Weather[] = [];
   @Input() city: City | undefined;
   @Output() onClickEvent: EventEmitter<string> = new EventEmitter();
+  @ViewChild('currentWeater') currentWeaterRef: CurrentWeatherComponent | undefined;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -25,8 +26,8 @@ export class WeatherForecastComponent implements OnInit {
 
   async updateWeather(): Promise<Statuses> {
     if (this.city) {
-      let status = Statuses.Loading;
-      status = await this.loadCurrentWeather(this.city.lat, this.city.lon);
+      let status: Statuses | undefined = Statuses.Loading;
+      status = await this.currentWeaterRef?.loadCurrentWeather(this.city.lat, this.city.lon);
 
       if (status !== Statuses.Error) {
         status = await this.loadForecast(this.city.lat, this.city.lon);
@@ -43,20 +44,6 @@ export class WeatherForecastComponent implements OnInit {
     }
 
     return new Promise<Statuses>((reject) => reject(Statuses.Error));
-  }
-
-  private loadCurrentWeather(lat: number, lon: number): Promise<Statuses> {
-    const promise = new Promise<Statuses>((resolve, reject) => {
-      this.weatherService.getCurrentWeather(lat, lon).subscribe({
-        next: (weather: Weather) => {
-          this.weatherService.addWeather(weather);
-          this.currentWeather = weather;
-          resolve(Statuses.Done);
-        },
-        error: (e) => reject(Statuses.Error),
-      });
-    });
-    return promise;
   }
 
   private loadForecast(lat: number, lon: number): Promise<Statuses> {

@@ -1,9 +1,8 @@
 <div class="weather">
     <article class="weather__time">
-        <div class="weather__today" *ngIf="currentWeather">
+        <div class="weather__today">
             <app-current-weather 
-                [city]="city"
-                [weather]="currentWeather">
+                [city]="city">
             </app-current-weather>
             <!-- <section class="weather__hourly">
                 <h1 class="normal-font text-gray">Today</h1>
@@ -16,13 +15,26 @@
                 </div>
             </section> -->
         </div>
-        <section class="weather__week">
+        <section class="weather__week" *ngIf="forecast.length === 5">
             <h1 class="normal-font text-gray">Next 5 day</h1>
-            <div class="week__list" *ngIf="forecast">
+            <div class="week__list">
                 <app-daily-forecast-card
                     *ngFor="let weather of forecast"
                     [weather]="weather">
                 </app-daily-forecast-card>
+            </div>
+        </section>
+        <section class="weather__week" *ngIf="!forecast || forecast.length < 5">
+            <ion-skeleton-text 
+                [animated]="true" 
+                style="width: 18%; height: 2rem">
+            </ion-skeleton-text>
+            <div class="week__list">
+                <ion-skeleton-text 
+                    *ngFor="let item of ['0','1','2','3','4']"
+                    [animated]="true" 
+                    style="width: 100%; height: 5.4rem">
+                </ion-skeleton-text>
             </div>
         </section>
     </article>
