@@ -9,9 +9,17 @@
         @include flex-column;
         width: 100%;
 
-        .degrees__scale {
-            position: absolute;
+        .current__degrees {
+            h3 {
+                margin-bottom: 0.25rem;
+            }
+
+            .degrees__scale {
+                position: absolute;
+            }
         }
+
+
     }
 }
 
