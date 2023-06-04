@@ -10,12 +10,12 @@
     <section class="cities__found" *ngIf="citiesAndWeatherFound.length">
       <h1 class="normal-font text-gray">Results</h1>
       <div class="cities__list">
-        <app-daily-forecast-card 
+        <app-city-weather-card 
           *ngFor="let item of citiesAndWeatherFound" 
           [city]="item.city"
           [weather]="item.weather"
         >
-        </app-daily-forecast-card>
+        </app-city-weather-card >
       </div>
     </section>
 

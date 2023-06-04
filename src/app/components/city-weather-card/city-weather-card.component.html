@@ -1,8 +1,13 @@
-<div class="card">
+<div class="card" [ngClass]="{'cursor-pointer': city}" (click)="showCity(city)">
 
-    <span class="card__title normal-font text-dark text-bold">
-        {{ weather?.date | date:'EEEE' }}
-    </span>
+    <div class="card__title" *ngIf="city">
+        <span class="normal-font text-dark text-bold">
+            {{ city.name }}
+        </span> <br>
+        <span *ngIf="city && city.state" class="small-font text-gray">
+            {{ city.state }}
+        </span>
+    </div>
 
     <div class="card__content">
         <app-weather-details-card 

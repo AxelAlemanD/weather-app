@@ -12,6 +12,7 @@ import { WeatherForecastComponent } from '../components/weather-forecast/weather
 import { SlideIndicatorComponent } from '../components/slide-indicator/slide-indicator.component';
 import { LoaderComponent } from '../components/loader/loader.component';
 import { TemperatureConverterPipe } from './pipes/temperature-converter/temperature-converter.pipe';
+import { CityWeatherCardComponent } from '../components/city-weather-card/city-weather-card.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import { TemperatureConverterPipe } from './pipes/temperature-converter/temperat
     DailyForecastCardComponent,
     HourlyForecastCardComponent,
     WeatherDetailsCardComponent,
+    CityWeatherCardComponent,
     TemperatureScaleSwitchComponent,
     SlideIndicatorComponent,
-    TemperatureConverterPipe
+    TemperatureConverterPipe,
   ],
   exports: [
     LoaderComponent,
@@ -32,6 +34,7 @@ import { TemperatureConverterPipe } from './pipes/temperature-converter/temperat
     DailyForecastCardComponent,
     HourlyForecastCardComponent,
     WeatherDetailsCardComponent,
+    CityWeatherCardComponent,
     TemperatureScaleSwitchComponent,
     SlideIndicatorComponent
   ],
