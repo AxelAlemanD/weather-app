@@ -15,7 +15,7 @@ export class WeatherService {
     let value = localStorage.getItem('last_update');
     if (value) {
       this.lastUpdate = new Date(value);
-    } else { 
+    } else {
       this.lastUpdate = new Date();
     }
   }
@@ -107,9 +107,25 @@ export class WeatherService {
       humidity: data.main.humidity,
       rain,
       wind: data.wind.speed,
+      image_name: this.getImageName(data.weather[0].icon),
       date: new Date(data.dt * 1000),
       updated_at: new Date()
     };
+  }
+
+  // Icons code in: https://openweathermap.org/weather-conditions
+  private getImageName(icon: string): string {
+    if (icon === '01d') { return 'clear-sky-day.svg'; }
+    if (icon === '01n') { return 'clear-sky-night.svg'; }
+    if (icon === '02d') { return 'few-clouds-day.svg'; }
+    if (icon === '02n') { return 'few-clouds-night.svg'; }
+    if (icon === '03d' || icon === '03n') { return 'scattered-clouds.svg'; }
+    if (icon === '04d' || icon === '04n') { return 'broken-clouds.svg'; }
+    if (icon === '09d' || icon === '09n') { return 'shower-rain.svg'; }
+    if (icon === '10d' || icon === '10n') { return 'rain.svg'; }
+    if (icon === '11d' || icon === '11n') { return 'thunderstorm.svg'; }
+    if (icon === '13d' || icon === '13n') { return 'snow.svg'; }
+    return 'clear-sky-day.svg';
   }
 
   private updateDateOfLastUpdate() {

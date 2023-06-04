@@ -9,6 +9,7 @@ export interface Weather {
     humidity: number;
     rain: number;
     wind: number;
+    image_name: string;
     date: Date | string;
     updated_at: Date | string;
 }
