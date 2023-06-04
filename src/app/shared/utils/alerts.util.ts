@@ -19,6 +19,7 @@ export class Alerts {
             message,
             duration,
             position,
+            cssClass: this.getClass(mode),
             icon: this.getIcon(mode)
         });
         await toast.present();
@@ -34,13 +35,21 @@ export class Alerts {
     }
 
     private static getIcon(mode: 'normal' | 'success' | 'warning'): string {
-        if (mode == 'success') {
-            return "checkmark-circle-outline";
-        }
-        if (mode == 'warning') {
-            return "alert-circle-outline";
-        }
-        return "";
+        const icons = {
+            normal: '',
+            success: 'checkmark-circle',
+            warning: 'alert-circle',
+        };
+        return icons[mode];        
+    }
+
+    private static getClass(mode: 'normal' | 'success' | 'warning'): string {
+        const colors = {
+            normal: 'alert',
+            success: 'alert alert-success',
+            warning: 'alert alert-warning',
+        };
+        return colors[mode];
     }
 
 }

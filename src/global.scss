@@ -136,6 +136,20 @@ ion-button {
   --box-shadow: none;
 }
 
+/* Alert styles */
+.alert {
+  --border-radius: 0.5rem;
+
+  &-success::part(icon) {
+    color: var(--ion-color-tertiary);
+  }
+
+  &-warning::part(icon) {
+    color: var(--ion-color-danger);
+  }
+}
+
+/* Swiper styles */
 swiper-container {
   width: 100%;
   overflow: auto;
