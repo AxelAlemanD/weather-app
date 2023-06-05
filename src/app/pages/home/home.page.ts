@@ -29,6 +29,10 @@ export class HomePage implements OnInit {
     this.lastUpdate = this.weatherService.lastUpdate;
   }
 
+  ionViewWillEnter() {
+    this.loadStoredCities();
+  }
+
   private async loadLocations() {
     try {
       let currentCity = await this.geolocationService.getCurrentLocation();
@@ -44,7 +48,7 @@ export class HomePage implements OnInit {
         'warning'
       );
     } finally {
-      this.cities = this.geolocationService.getStoredCities();
+      this.loadStoredCities();
     }
   }
 
@@ -70,6 +74,10 @@ export class HomePage implements OnInit {
 
   showSlide(index: number) {
     this.swiperRef?.nativeElement.swiper.slideTo(index);
+  }
+
+  private loadStoredCities() {
+    this.cities = this.geolocationService.getStoredCities();
   }
 
 }
