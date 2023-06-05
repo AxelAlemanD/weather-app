@@ -46,7 +46,7 @@ export class WeatherService {
     );
   }
 
-  getStoredWeathers(): Weather[] {
+  private getStoredWeathers(): Weather[] {
     let weathers: any = localStorage.getItem('weathers');
     if (weathers) {
       weathers = JSON.parse(weathers);
@@ -62,10 +62,19 @@ export class WeatherService {
     return [];
   }
 
+  getStoredCityWeather(lat: number, lon: number): Weather | undefined {
+    let weathers = this.getStoredWeathers();
+    lat = Number(lat.toFixed(4));
+    lon = Number(lon.toFixed(4));
+    return weathers.find(storedWeather => {
+      return (storedWeather.lat === lat) && (storedWeather.lon === lon);
+    });
+  }
+
   addWeather(weather: Weather) {
     let weathers = this.getStoredWeathers();
     let weatherIndex = weathers.findIndex(storedWeather => {
-      return (storedWeather.lat === weather.lat) && (storedWeather.lon === weather.lon) && (storedWeather.date.toLocaleString() === weather.date.toLocaleString());
+      return (storedWeather.lat === weather.lat) && (storedWeather.lon === weather.lon);
     });
 
     if (typeof weather.date !== 'string') {
@@ -81,10 +90,73 @@ export class WeatherService {
     localStorage.setItem('weathers', JSON.stringify(weathers));
   }
 
+  private getStoredForecasts(): any[] {
+    let forecasts: any = localStorage.getItem('forecasts');
+    if (forecasts) {
+      forecasts = JSON.parse(forecasts);
+      if (forecasts) {
+        return forecasts.map((item: any) => {
+          return {
+            ...item,
+            forecast: item.forecast.map((weather: Weather) => {
+              return {
+                ...weather,
+                date: new Date(weather.date)
+              };
+            })
+          };
+        });
+      }
+    }
+    return [];
+  }
+
+  getStoredCityForecast(lat: number, lon: number): Weather[] {
+    let forecasts = this.getStoredForecasts();
+    lat = Number(lat.toFixed(4));
+    lon = Number(lon.toFixed(4));
+    const forecast = forecasts.find(storedForecast => {
+      return (storedForecast.lat === lat) && (storedForecast.lon === lon);
+    });
+
+    if (forecast) {
+      return forecast.forecast;
+    }
+    return [];
+  }
+
+  addForecast(forecast: Weather[]) {
+    let forecasts = this.getStoredForecasts();
+
+    let weatherIndex = forecasts.findIndex(storedForecast => {
+      return (storedForecast.lat === forecast[0].lat) && (storedForecast.lon === forecast[0].lon);
+    });
+
+    forecast.forEach(weather => {
+      if (typeof weather.date !== 'string') {
+        weather.date = weather.date.toISOString();
+      }
+    });
+
+    let forecastToSave = {
+      lat: forecast[0].lat,
+      lon: forecast[0].lon,
+      forecast
+    };
+
+    if (weatherIndex < 0) {
+      forecasts.push(forecastToSave);
+    } else {
+      forecasts[weatherIndex] = forecastToSave;
+    }
+
+    localStorage.setItem('forecasts', JSON.stringify(forecasts));
+  }
+
   removeWeather(weather: Weather) {
     let weathers = this.getStoredWeathers();
     weathers = weathers.filter(storedWeather => {
-      return (storedWeather.lat !== weather.lat) && (storedWeather.lon !== weather.lon) && (storedWeather.date.toLocaleString() !== weather.date.toLocaleString());
+      return (storedWeather.lat !== weather.lat) && (storedWeather.lon !== weather.lon);
     });
     localStorage.setItem('weathers', JSON.stringify(weathers));
   }
@@ -98,7 +170,7 @@ export class WeatherService {
 
     return {
       lat: data.coord.lat,
-      lon: data.coord.lat,
+      lon: data.coord.lon,
       main: data.weather[0].main,
       description: data.weather[0].description,
       temp: data.main.temp,

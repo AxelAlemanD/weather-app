@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { City } from 'src/app/models/city.dto';
 import { Weather } from 'src/app/models/weather.dto';
+import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { TemperatureScaleService } from 'src/app/services/temperature-scale/temperature-scale.service';
 import { WeatherService } from 'src/app/services/weather/weather.service';
 import { Scales } from 'src/app/shared/utils/scales.enum';
@@ -19,6 +20,7 @@ export class CurrentWeatherComponent implements OnInit {
 
   constructor(
     private weatherService: WeatherService,
+    private geolocationService: GeolocationService,
     private temperatureScaleService: TemperatureScaleService
   ) { }
 
@@ -26,8 +28,9 @@ export class CurrentWeatherComponent implements OnInit {
     this.temperatureScaleService.activeScale.subscribe(scale => {
       this.activeScale = scale;
     });
-    
+
     if (this.city) {
+      this.loadStoredWeather(this.city.lat, this.city.lon);
       this.loadCurrentWeather(this.city.lat, this.city.lon);
     }
   }
@@ -36,14 +39,23 @@ export class CurrentWeatherComponent implements OnInit {
     const promise = new Promise<Statuses>((resolve, reject) => {
       this.weatherService.getCurrentWeather(lat, lon).subscribe({
         next: (weather: Weather) => {
-          this.weatherService.addWeather(weather);
           this.weather = weather;
+          if (this.geolocationService.isCityStored(this.city as City)) {
+            this.weatherService.addWeather(weather);
+          }
           resolve(Statuses.Done);
         },
         error: (e) => reject(Statuses.Error),
       });
     });
     return promise;
+  }
+
+  private loadStoredWeather(lat: number, lon: number) {
+    let storedWeather = this.weatherService.getStoredCityWeather(lat, lon);
+    if (storedWeather) {
+      this.weather = storedWeather;
+    }
   }
 
 }

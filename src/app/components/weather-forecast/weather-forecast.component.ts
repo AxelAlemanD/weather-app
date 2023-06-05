@@ -5,6 +5,7 @@ import { WeatherService } from 'src/app/services/weather/weather.service';
 import { Alerts } from 'src/app/shared/utils/alerts.util';
 import { Statuses } from 'src/app/shared/utils/statuses.enum';
 import { CurrentWeatherComponent } from '../current-weather/current-weather.component';
+import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -18,7 +19,10 @@ export class WeatherForecastComponent implements OnInit {
   @Output() onClickEvent: EventEmitter<string> = new EventEmitter();
   @ViewChild('currentWeater') currentWeaterRef: CurrentWeatherComponent | undefined;
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(
+    private weatherService: WeatherService,
+    private geolocationService: GeolocationService,
+  ) { }
 
   ngOnInit(): void {
     this.updateWeather();
@@ -30,6 +34,7 @@ export class WeatherForecastComponent implements OnInit {
       status = await this.currentWeaterRef?.loadCurrentWeather(this.city.lat, this.city.lon);
 
       if (status !== Statuses.Error) {
+        this.loadStoredForecast(this.city.lat, this.city.lon);
         status = await this.loadForecast(this.city.lat, this.city.lon);
       }
 
@@ -51,12 +56,20 @@ export class WeatherForecastComponent implements OnInit {
       this.weatherService.getForecastForNext5Days(lat, lon).subscribe({
         next: (forecast: Weather[]) => {
           this.forecast = forecast;
+          if (this.geolocationService.isCityStored(this.city as City)) {
+            this.weatherService.addForecast(this.forecast);
+          }
           resolve(Statuses.Done);
         },
         error: (e) => reject(Statuses.Error),
       });
     });
     return promise;
+  }
+
+  private loadStoredForecast(lat: number, lon: number) {
+    const storedForecast = this.weatherService.getStoredCityForecast(lat, lon);
+    this.forecast = storedForecast;
   }
 
   preventSlideChange(event: any) {

@@ -31,6 +31,7 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter() {
     this.loadStoredCities();
+    this.updateWeatherForecast();
   }
 
   private async loadLocations() {
@@ -39,6 +40,7 @@ export class HomePage implements OnInit {
       this.geolocationService.getCity(currentCity.lat, currentCity.lon).subscribe({
         next: (city: City[]) => this.geolocationService.addCity(city[0]),
         error: (e) => Alerts.showNetworkErrorToast(),
+        complete: () => this.loadStoredCities(),        
       });
     } catch (error) {
       Alerts.showToast(
