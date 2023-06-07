@@ -15,7 +15,7 @@
                 </div>
             </section> -->
         </div>
-        <section class="weather__week" *ngIf="forecast.length === 5">
+        <section class="weather__week" *ngIf="forecast.length >= 5">
             <h1 class="normal-font text-gray">Next 5 day</h1>
             <div class="week__list">
                 <app-daily-forecast-card

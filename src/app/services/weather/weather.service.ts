@@ -30,22 +30,6 @@ export class WeatherService {
     );
   }
 
-  getForecastForNext5Days(lat: number, lon: number) {
-    const url = `${environment.weather_url}forecast?lat=${lat}&lon=${lon}&appid=${environment.api_key}&units=imperial`;
-    return this.http.get<Weather[]>(url).pipe(
-      map((forecast: any) => {
-        let filteredForecast = forecast.list.filter((day: any) => {
-          return day.dt_txt.includes('12');
-        });
-        const formatedDailyForecast = filteredForecast.map((day: any) => {
-          return this.getFormattedWeather({ coord: forecast.city.coord, ...day });
-        });
-        this.updateDateOfLastUpdate();
-        return formatedDailyForecast;
-      })
-    );
-  }
-
   private getStoredWeathers(): Weather[] {
     let weathers: any = localStorage.getItem('weathers');
     if (weathers) {
@@ -90,6 +74,33 @@ export class WeatherService {
     localStorage.setItem('weathers', JSON.stringify(weathers));
   }
 
+  removeCityWeather(lat: number, lon: number) {
+    lat = Number(lat.toFixed(4));
+    lon = Number(lon.toFixed(4));
+    let weathers = this.getStoredWeathers();
+    weathers = weathers.filter(storedWeather => {
+      return (storedWeather.lat !== lat) && (storedWeather.lon !== lon);
+    });
+    localStorage.setItem('weathers', JSON.stringify(weathers));
+  }
+
+  getForecastForNext5Days(lat: number, lon: number) {
+    const url = `${environment.weather_url}forecast?lat=${lat}&lon=${lon}&appid=${environment.api_key}&units=imperial`;
+    return this.http.get<Weather[]>(url).pipe(
+      map((forecast: any) => {
+        let filteredForecast = forecast.list.filter((day: any) => {
+          const hour = new Date(day.dt_txt).getHours();
+          return hour === 12;
+        });
+        const formatedDailyForecast = filteredForecast.map((day: any) => {
+          return this.getFormattedWeather({ coord: forecast.city.coord, ...day });
+        });
+        this.updateDateOfLastUpdate();
+        return formatedDailyForecast;
+      })
+    );
+  }
+
   private getStoredForecasts(): any[] {
     let forecasts: any = localStorage.getItem('forecasts');
     if (forecasts) {
@@ -112,9 +123,9 @@ export class WeatherService {
   }
 
   getStoredCityForecast(lat: number, lon: number): Weather[] {
-    let forecasts = this.getStoredForecasts();
     lat = Number(lat.toFixed(4));
     lon = Number(lon.toFixed(4));
+    let forecasts = this.getStoredForecasts();
     const forecast = forecasts.find(storedForecast => {
       return (storedForecast.lat === lat) && (storedForecast.lon === lon);
     });
@@ -153,12 +164,16 @@ export class WeatherService {
     localStorage.setItem('forecasts', JSON.stringify(forecasts));
   }
 
-  removeWeather(weather: Weather) {
-    let weathers = this.getStoredWeathers();
-    weathers = weathers.filter(storedWeather => {
-      return (storedWeather.lat !== weather.lat) && (storedWeather.lon !== weather.lon);
+  removeCityForecast(lat: number, lon: number) {
+    lat = Number(lat.toFixed(4));
+    lon = Number(lon.toFixed(4));
+    let forecasts = this.getStoredForecasts();
+
+    forecasts = forecasts.filter(storedForecast => {
+      return (storedForecast.lat !== lat) && (storedForecast.lon !== lon);
     });
-    localStorage.setItem('weathers', JSON.stringify(weathers));
+    
+    localStorage.setItem('forecasts', JSON.stringify(forecasts));
   }
 
   private getFormattedWeather(data: any): Weather {

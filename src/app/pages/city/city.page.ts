@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { City } from 'src/app/models/city.dto';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
+import { WeatherService } from 'src/app/services/weather/weather.service';
 import { Alerts } from 'src/app/shared/utils/alerts.util';
 
 @Component({
@@ -18,6 +19,7 @@ export class CityPage implements OnInit {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
+    private weatherService: WeatherService,
     private geolocationService: GeolocationService,
   ) { }
 
@@ -54,6 +56,8 @@ export class CityPage implements OnInit {
   removeFromTheList() {
     if (this.city) {
       this.geolocationService.removeCity(this.city);
+      this.weatherService.removeCityWeather(this.city.lat, this.city.lon);
+      this.weatherService.removeCityForecast(this.city.lat, this.city.lon);
       this.isCityStored = this.geolocationService.isCityStored(this.city);
       Alerts.showToast('The city has been removed!', 2000, 'top', 'success');
     }
