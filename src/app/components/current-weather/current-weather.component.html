@@ -10,6 +10,7 @@
                 {{ weather.temp | temperatureConverter:activeScale }} 
                 <span class="degrees__scale large-font text-bold">°{{ activeScale }}</span>
             </h1>
+            <h3 class="text-bold text-capitalize">{{weather.description}}</h3>
         </div>
         <app-weather-details-card 
             [weather]="weather"
