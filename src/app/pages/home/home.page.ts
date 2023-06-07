@@ -40,15 +40,10 @@ export class HomePage implements OnInit {
       this.geolocationService.getCity(currentCity.lat, currentCity.lon).subscribe({
         next: (city: City[]) => this.geolocationService.addCity(city[0]),
         error: (e) => Alerts.showNetworkErrorToast(),
-        complete: () => this.loadStoredCities(),        
+        complete: () => this.loadStoredCities(),
       });
-    } catch (error) {
-      Alerts.showToast(
-        'No access to geolocation. Check the status and permissions of the geolocation',
-        2000,
-        'top',
-        'warning'
-      );
+    } catch (error: any) {
+      Alerts.showToast(error.message, 2000, 'top', 'warning');
     } finally {
       this.loadStoredCities();
     }

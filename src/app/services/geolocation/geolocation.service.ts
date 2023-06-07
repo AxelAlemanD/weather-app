@@ -12,6 +12,57 @@ export class GeolocationService {
 
   constructor(private http: HttpClient) { }
 
+  private checkPermissions(): Promise<string> {
+    return new Promise<string>(async (resolve, reject) => {
+      try {
+        const permissions = await Geolocation.checkPermissions();
+        if (permissions.coarseLocation === "granted" && permissions.location === "granted") {
+          resolve("granted");
+          return;
+        }
+        resolve("denied");
+      } catch (e) {
+        reject(new Error('Location services are not enabled'));
+      }
+    });
+  }
+
+  private requestPermissions(): Promise<string> {
+    return new Promise<string>(async (resolve, reject) => {
+      const permissions = await Geolocation.requestPermissions();
+      if (permissions.coarseLocation === "granted" && permissions.location === "granted") {
+        resolve("granted");
+        return;
+      }
+      reject(new Error('No access to geolocation. Check the status and permissions of the geolocation'));
+    });
+  }
+
+  async getCurrentLocation(): Promise<City> {
+    let currentLocation: City = {
+      lat: 0,
+      lon: 0,
+      name: '',
+      state: ''
+    };
+
+    try {
+      let permissions = await this.checkPermissions();
+      if (permissions === "denied") {
+        permissions = await this.requestPermissions();
+      }
+      let coordinates = await Geolocation.getCurrentPosition();
+      if (coordinates) {
+        currentLocation.lat = coordinates.coords.latitude;
+        currentLocation.lon = coordinates.coords.longitude;
+      }
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+
+    return currentLocation;
+  }
+
   getCities(name: string) {
     const url = `${environment.geolocation_url}direct?q=${name}&limit=5&appid=${environment.api_key}`;
     return this.http.get<City[]>(url).pipe(
@@ -34,27 +85,6 @@ export class GeolocationService {
         return formatedCities;
       })
     );
-  }
-
-  async getCurrentLocation(): Promise<City> {
-    let currentLocation: City = {
-      lat: 0,
-      lon: 0,
-      name: '',
-      state: ''
-    };
-
-    try {
-      const coordinates = await Geolocation.getCurrentPosition();  
-      if (coordinates) {
-        currentLocation.lat = coordinates.coords.latitude;
-        currentLocation.lon = coordinates.coords.longitude;
-      }
-    } catch (error) {
-      throw new Error('No access to geolocation. Check the status and permissions of the geolocation');
-    }    
-
-    return currentLocation;
   }
 
   getStoredCities(): City[] {
