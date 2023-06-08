@@ -2,6 +2,7 @@
 
 .loader__container {
     @include flex-column;
+    align-items: center;
 }
 
 .loader {
