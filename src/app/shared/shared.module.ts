@@ -13,6 +13,7 @@ import { SlideIndicatorComponent } from '../components/slide-indicator/slide-ind
 import { LoaderComponent } from '../components/loader/loader.component';
 import { TemperatureConverterPipe } from './pipes/temperature-converter/temperature-converter.pipe';
 import { CityWeatherCardComponent } from '../components/city-weather-card/city-weather-card.component';
+import { SpeedConverterPipe } from './pipes/speed-converter/speed-converter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CityWeatherCardComponent } from '../components/city-weather-card/city-w
     TemperatureScaleSwitchComponent,
     SlideIndicatorComponent,
     TemperatureConverterPipe,
+    SpeedConverterPipe,
   ],
   exports: [
     LoaderComponent,

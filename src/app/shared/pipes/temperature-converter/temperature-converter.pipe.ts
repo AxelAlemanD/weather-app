@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Scales } from '../../utils/scales.enum';
+import { TemperatureScales } from '../../utils/temperatureScales.enum';
 
 @Pipe({
   name: 'temperatureConverter'
 })
 export class TemperatureConverterPipe implements PipeTransform {
 
-  transform(fahrenheit: number | undefined, unit: Scales): number {
+  transform(fahrenheit: number | undefined, unit: TemperatureScales): number {
     if (fahrenheit && fahrenheit > 0) {
       return (unit === 'C')
         ? this.convertToFahrenheitToCelsius(fahrenheit)

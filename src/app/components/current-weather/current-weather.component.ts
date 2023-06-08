@@ -4,7 +4,7 @@ import { Weather } from 'src/app/models/weather.dto';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { TemperatureScaleService } from 'src/app/services/temperature-scale/temperature-scale.service';
 import { WeatherService } from 'src/app/services/weather/weather.service';
-import { Scales } from 'src/app/shared/utils/scales.enum';
+import { TemperatureScales } from 'src/app/shared/utils/temperatureScales.enum';
 import { Statuses } from 'src/app/shared/utils/statuses.enum';
 
 @Component({
@@ -14,7 +14,7 @@ import { Statuses } from 'src/app/shared/utils/statuses.enum';
 })
 export class CurrentWeatherComponent implements OnInit {
 
-  activeScale: Scales = Scales.Fahrenheit;
+  activeTemperatureScale: TemperatureScales = TemperatureScales.Fahrenheit;
   weather: Weather | undefined;
   @Input() city: City | undefined;
 
@@ -26,7 +26,7 @@ export class CurrentWeatherComponent implements OnInit {
 
   ngOnInit(): void {
     this.temperatureScaleService.activeScale.subscribe(scale => {
-      this.activeScale = scale;
+      this.activeTemperatureScale = scale;
     });
 
     if (this.city) {

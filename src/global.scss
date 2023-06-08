@@ -74,6 +74,10 @@ h3,
     text-transform: capitalize;
   }
 
+  &-lowercase {
+    text-transform: lowercase;
+  }
+
   /* Text align */
   &-start {
     text-align: start;

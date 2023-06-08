@@ -2,7 +2,9 @@
     <div class="card__content">
         <div class="card__item">
             <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/wind.png" alt="Wind icon">
-            <span class="normal-font text-bold">{{ weather?.wind }} km/h</span>
+            <span class="normal-font text-bold text-lowercase">
+                {{ weather?.wind | speedConverter:activeSpeedScale }} {{ activeSpeedScale }}
+            </span>
             <span class="small-font text-gray">Wind</span>
         </div>
         <div class="card__item">
@@ -12,7 +14,7 @@
         </div>
         <div class="card__item">
             <img *ngIf="showIcons" class="image-icon" src="../../../assets/icon/umbrella.png" alt="Rain icon">
-            <span class="normal-font text-bold">{{ weather?.rain }} %</span>
+            <span class="normal-font text-bold">{{ weather?.rain }} mm</span>
             <span class="small-font text-gray">Rain</span>
         </div>
     </div>

@@ -193,7 +193,7 @@ export class WeatherService {
       min_temp: data.main.temp_min,
       humidity: data.main.humidity,
       rain,
-      wind: data.wind.speed,
+      wind: Math.round(data.wind.speed),
       image_name: this.getImageName(data.weather[0].icon),
       date: new Date(data.dt * 1000),
       updated_at: new Date()

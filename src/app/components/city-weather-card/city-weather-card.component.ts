@@ -4,7 +4,7 @@ import { City } from 'src/app/models/city.dto';
 import { Weather } from 'src/app/models/weather.dto';
 import { TemperatureScaleService } from 'src/app/services/temperature-scale/temperature-scale.service';
 import { WeatherService } from 'src/app/services/weather/weather.service';
-import { Scales } from 'src/app/shared/utils/scales.enum';
+import { TemperatureScales } from 'src/app/shared/utils/temperatureScales.enum';
 
 @Component({
   selector: 'app-city-weather-card',
@@ -13,7 +13,7 @@ import { Scales } from 'src/app/shared/utils/scales.enum';
 })
 export class CityWeatherCardComponent implements OnInit {
 
-  activeScale: Scales = Scales.Fahrenheit;
+  activeTemperatureScale: TemperatureScales = TemperatureScales.Fahrenheit;
   weather: Weather | undefined;
   @Input() city: City | undefined;
 
@@ -26,7 +26,7 @@ export class CityWeatherCardComponent implements OnInit {
   ngOnInit(): void {
     this.loadCurrentWeather();
     this.temperatureScaleService.activeScale.subscribe(scale => {
-      this.activeScale = scale;
+      this.activeTemperatureScale = scale;
     });
   }
 

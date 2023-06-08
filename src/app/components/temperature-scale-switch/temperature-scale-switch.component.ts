@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SpeedScaleService } from 'src/app/services/speed-scale/speed-scale.service';
 import { TemperatureScaleService } from 'src/app/services/temperature-scale/temperature-scale.service';
-import { Scales } from 'src/app/shared/utils/scales.enum';
+import { SpeedScales } from 'src/app/shared/utils/speedScales.enum';
+import { TemperatureScales } from 'src/app/shared/utils/temperatureScales.enum';
 
 @Component({
   selector: 'app-temperature-scale-switch',
@@ -9,18 +11,36 @@ import { Scales } from 'src/app/shared/utils/scales.enum';
 })
 export class TemperatureScaleSwitchComponent implements OnInit {
 
-  activeScale: Scales = Scales.Fahrenheit;
+  activeTemperatureScale: TemperatureScales = TemperatureScales.Fahrenheit;
 
-  constructor(private temperatureScaleService: TemperatureScaleService) { }
+  constructor(
+    private temperatureScaleService: TemperatureScaleService,
+    private speedScaleService: SpeedScaleService
+  ) { }
 
   ngOnInit(): void {
     this.temperatureScaleService.activeScale.subscribe(scale => {
-      this.activeScale = scale;
+      this.activeTemperatureScale = scale;
     });
-   }
+  }
 
   toggleTemperatureScale(event: any) {
-    let scale: Scales = (event.target.checked) ? Scales.Fahrenheit : Scales.Celsius;
-    this.temperatureScaleService.changeScale(scale);
+    let temperatureScale = this.getTemperatureScale(event.target.checked);
+    let speedScale = this.getSpeedScale(event.target.checked);
+    this.temperatureScaleService.changeScale(temperatureScale);
+    this.speedScaleService.changeScale(speedScale);
   }
+
+  private getTemperatureScale(isChecked: boolean): TemperatureScales {
+    return (isChecked)
+      ? TemperatureScales.Fahrenheit
+      : TemperatureScales.Celsius;
+  }
+
+  private getSpeedScale(isChecked: boolean): SpeedScales {
+    return (isChecked)
+      ? SpeedScales.Mph
+      : SpeedScales.Kmh;
+  }
+
 }

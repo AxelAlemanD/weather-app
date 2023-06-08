@@ -13,9 +13,9 @@
 
     <div class="card__weather">
         <p>
-            <span class="text-gray">{{ weather?.min_temp | temperatureConverter:activeScale }}°</span>
+            <span class="text-gray">{{ weather?.min_temp | temperatureConverter:activeTemperatureScale }}°</span>
              / 
-            <span class="normal-font">{{ weather?.max_temp | temperatureConverter:activeScale }}°</span>
+            <span class="normal-font">{{ weather?.max_temp | temperatureConverter:activeTemperatureScale }}°</span>
         </p>
         <img class="image-sm" src="../../../assets/weather-states/{{weather?.image_name}}" alt="Weather">
     </div>

@@ -1,31 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Scales } from 'src/app/shared/utils/scales.enum';
+import { TemperatureScales } from 'src/app/shared/utils/temperatureScales.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemperatureScaleService {
 
-  private originScale = new BehaviorSubject<Scales>(Scales.Fahrenheit);
+  private originScale = new BehaviorSubject<TemperatureScales>(TemperatureScales.Fahrenheit);
   public activeScale = this.originScale.asObservable();
 
   constructor() { }
 
-  changeScale(scale: Scales) {
+  changeScale(scale: TemperatureScales) {
     this.originScale.next(scale);
     this.setPreferredScale(scale);
   }
 
-  getPreferredScale(): Scales {
+  getPreferredScale(): TemperatureScales {
     let scale = localStorage.getItem('scale');
     if (scale) {
-      return (scale === 'F') ? Scales.Fahrenheit : Scales.Celsius;
+      return (scale === 'F') 
+        ? TemperatureScales.Fahrenheit 
+        : TemperatureScales.Celsius;
     }
-    return Scales.Fahrenheit;
+    return TemperatureScales.Fahrenheit;
   }
 
-  private setPreferredScale(scale: Scales) {
+  private setPreferredScale(scale: TemperatureScales) {
     localStorage.setItem('scale', scale);
   }
 

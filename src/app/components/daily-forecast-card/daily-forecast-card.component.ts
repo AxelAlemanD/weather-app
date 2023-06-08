@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Weather } from 'src/app/models/weather.dto';
 import { TemperatureScaleService } from 'src/app/services/temperature-scale/temperature-scale.service';
-import { Scales } from 'src/app/shared/utils/scales.enum';
+import { TemperatureScales } from 'src/app/shared/utils/temperatureScales.enum';
 
 @Component({
   selector: 'app-daily-forecast-card',
@@ -10,7 +10,7 @@ import { Scales } from 'src/app/shared/utils/scales.enum';
 })
 export class DailyForecastCardComponent implements OnInit {
 
-  activeScale: Scales = Scales.Fahrenheit;
+  activeTemperatureScale: TemperatureScales = TemperatureScales.Fahrenheit;
   @Input() weather: Weather | undefined;
 
   constructor(
@@ -19,7 +19,7 @@ export class DailyForecastCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.temperatureScaleService.activeScale.subscribe(scale => {
-      this.activeScale = scale;
+      this.activeTemperatureScale = scale;
     });
   }
 
