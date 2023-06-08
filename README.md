@@ -4,7 +4,7 @@
 
   <br>  
   
-   ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
+  ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
   ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) 
   ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
   ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -45,20 +45,20 @@ That's it, the app should begin running in your browser.
 
 ## Visuals
 ### Home Page
-https://github.com/AxelAlemanD/weather-app/assets/99099658/a32af17a-dbf5-446f-b428-2dea012c42c7
+https://github.com/AxelAlemanD/weather-app/assets/99099658/4031ce02-b9f3-4797-b812-ef0bb46863bd
 
 ### Search by cities
-https://github.com/AxelAlemanD/weather-app/assets/99099658/d444d83a-1330-4ddb-bec4-a6a1f2821f7b
+https://github.com/AxelAlemanD/weather-app/assets/99099658/46a708e6-8ac4-4ba3-8f78-9d2ce4abae17
 
 ### Add and remove favorite places
-https://github.com/AxelAlemanD/weather-app/assets/99099658/4223694d-49c1-4c98-9445-1907d5be8915
+https://github.com/AxelAlemanD/weather-app/assets/99099658/90a277cf-a44d-438f-a014-1959da480f13
 
 ### Handling errors
-https://github.com/AxelAlemanD/weather-app/assets/99099658/b3592167-c7ac-4ea5-8976-bd2d49eb5073
+https://github.com/AxelAlemanD/weather-app/assets/99099658/0472a7c8-42e9-4cd6-9531-a74296c6fe9c
 
-https://github.com/AxelAlemanD/weather-app/assets/99099658/f3905268-1569-4aed-8c67-dd78e0e915e1
+https://github.com/AxelAlemanD/weather-app/assets/99099658/d7fb803c-ca8e-4508-9fae-8b39c3f51136
 
-https://github.com/AxelAlemanD/weather-app/assets/99099658/d16c6bd7-3fb6-4de3-9050-525dadd00826
+https://github.com/AxelAlemanD/weather-app/assets/99099658/ef02efe3-df45-47b7-8de1-01c900bf7711
 
 ### Offline mode
-https://github.com/AxelAlemanD/weather-app/assets/99099658/476fddb9-94c5-48eb-87b2-ce5af5f14c52
+https://github.com/AxelAlemanD/weather-app/assets/99099658/6c5de3d6-4c83-43f3-a852-5cb4c6096686
