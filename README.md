@@ -27,4 +27,21 @@ Minimalist cross-platform application that provides real-time weather forecast. 
 * Web Browser, Android, and iOS Support: The app is compatible with multiple platforms, including web browsers, Android devices, and iOS devices (such as iPhone and iPad).
 
 ## Visuals
-Coming soon
+### Home Page
+https://github.com/AxelAlemanD/weather-app/assets/99099658/a32af17a-dbf5-446f-b428-2dea012c42c7
+
+### Search by cities
+https://github.com/AxelAlemanD/weather-app/assets/99099658/d444d83a-1330-4ddb-bec4-a6a1f2821f7b
+
+### Add and remove favorite places
+https://github.com/AxelAlemanD/weather-app/assets/99099658/4223694d-49c1-4c98-9445-1907d5be8915
+
+### Handling errors
+https://github.com/AxelAlemanD/weather-app/assets/99099658/b3592167-c7ac-4ea5-8976-bd2d49eb5073
+
+https://github.com/AxelAlemanD/weather-app/assets/99099658/f3905268-1569-4aed-8c67-dd78e0e915e1
+
+https://github.com/AxelAlemanD/weather-app/assets/99099658/d16c6bd7-3fb6-4de3-9050-525dadd00826
+
+### Offline mode
+https://github.com/AxelAlemanD/weather-app/assets/99099658/476fddb9-94c5-48eb-87b2-ce5af5f14c52
