@@ -16,8 +16,9 @@
 
 <br>
 
-## Features
 Minimalist cross-platform application that provides real-time weather forecast. Get accurate and up-to-date weather information anywhere, anytime.
+
+## Features
 
 * Search by cities: The application allows users to search for weather forecasts for specific cities.
 * Get weather of your current location: The app is also capable of providing weather forecast based on the current location of the user.
