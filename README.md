@@ -26,6 +26,23 @@ Minimalist cross-platform application that provides real-time weather forecast. 
 * Use the app without internet connection: The app is designed to work even when the device has no internet connection. This means that users can access weather information pre-loaded or stored on the device, which is useful when they are in areas without connectivity or when mobile data is not available.
 * Web Browser, Android, and iOS Support: The app is compatible with multiple platforms, including web browsers, Android devices, and iOS devices (such as iPhone and iPad).
 
+## Requeriments
+* `nodeJS`
+
+## Installation
+How to Run this project
+You should have installed nodeJS before continuing with this guide Run this commands:
+
+1. `npm install -g @ionic/cli`
+2. `npm install`
+3. `ionic serve`
+
+That's it, the app should begin running in your browser.
+
+## Generate APK
+1. `ionic capacitor build android`
+2. The last command open Android Studio. Within Android Studio, click the "Run" button, select the attached Android device, then click OK to build, install, and launch the app on your device.
+
 ## Visuals
 ### Home Page
 https://github.com/AxelAlemanD/weather-app/assets/99099658/a32af17a-dbf5-446f-b428-2dea012c42c7
