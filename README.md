@@ -16,13 +16,14 @@
 
 <br>
 
-Aplicación multiplataforma minimalista que proporciona el pronóstico del tiempo en tiempo real. Obtenga información meteorológica precisa y actualizada en cualquier lugar y en cualquier momento.
+## Features
+Minimalist cross-platform application that provides real-time weather forecast. Get accurate and up-to-date weather information anywhere, anytime.
 
-* Búsqueda por ciudades: La aplicación permite a los usuarios buscar pronósticos del tiempo para ciudades específicas.
-* Obtén el clima de tu ubicación actual: La aplicación también es capaz de proporcionar el pronóstico del tiempo basado en la ubicación actual del usuario.
-* Guarda tus lugares preferidos: La aplicación ofrece la posibilidad de guardar lugares preferidos. Esto permite a los usuarios mantenerse al tanto del clima en los lugares que les interesan.
-* Utiliza la aplicación sin conexión a internet: La aplicación está diseñada para funcionar incluso cuando el dispositivo no tiene conexión a Internet. Esto significa que los usuarios pueden acceder a la información meteorológica previamente cargada o almacenada en el dispositivo, lo que resulta útil cuando se encuentran en áreas sin conectividad o cuando no se dispone de datos móviles.
-* Compatibilidad con navegadores web, Android y iOS: La aplicación es compatible con múltiples plataformas, incluidos navegadores web, dispositivos Android y dispositivos iOS (como iPhone y iPad).
+* Search by cities: The application allows users to search for weather forecasts for specific cities.
+* Get weather of your current location: The app is also capable of providing weather forecast based on the current location of the user.
+* Save your favorite places: The application offers the possibility of saving favorite places. This allows users to keep up with the weather in the places that matter to them.
+* Use the app without internet connection: The app is designed to work even when the device has no internet connection. This means that users can access weather information pre-loaded or stored on the device, which is useful when they are in areas without connectivity or when mobile data is not available.
+* Web Browser, Android, and iOS Support: The app is compatible with multiple platforms, including web browsers, Android devices, and iOS devices (such as iPhone and iPad).
 
 ## Visuals
 Coming soon
