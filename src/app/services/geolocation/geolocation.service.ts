@@ -4,13 +4,17 @@ import { environment } from 'src/environments/environment.prod';
 import { City } from 'src/app/models/city.dto';
 import { map } from 'rxjs/operators';
 import { Geolocation } from '@capacitor/geolocation';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocationService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private platform: Platform
+  ) { }
 
   private checkPermissions(): Promise<string> {
     return new Promise<string>(async (resolve, reject) => {
@@ -47,9 +51,11 @@ export class GeolocationService {
     };
 
     try {
-      let permissions = await this.checkPermissions();
-      if (permissions === "denied") {
-        permissions = await this.requestPermissions();
+      if (!(this.platform.is('desktop') || this.platform.is('mobileweb'))) {
+        let permissions = await this.checkPermissions();
+        if (permissions === "denied") {
+          permissions = await this.requestPermissions();
+        }
       }
       let coordinates = await Geolocation.getCurrentPosition();
       if (coordinates) {
