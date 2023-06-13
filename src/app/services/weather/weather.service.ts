@@ -189,6 +189,7 @@ export class WeatherService {
       main: data.weather[0].main,
       description: data.weather[0].description,
       temp: data.main.temp,
+      thermal_sensation: data.main.feels_like,
       max_temp: data.main.temp_max,
       min_temp: data.main.temp_min,
       humidity: data.main.humidity,

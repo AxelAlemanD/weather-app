@@ -10,6 +10,14 @@
                 {{ weather.temp | temperatureConverter:activeTemperatureScale }} 
                 <span class="degrees__scale large-font text-bold">°{{ activeTemperatureScale }}</span>
             </h1>
+            <span class="normal-font text-gray">
+                Thermal sensation: 
+                <span class="text-bold">
+                    {{ weather.thermal_sensation | temperatureConverter:activeTemperatureScale }} 
+                    <span class="degrees__scale small-font">°{{ activeTemperatureScale }}</span>
+                </span>
+            </span>
+            
             <h3 class="text-bold text-capitalize">{{weather.description}}</h3>
         </div>
         <app-weather-details-card 

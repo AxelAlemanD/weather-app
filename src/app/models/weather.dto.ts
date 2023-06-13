@@ -4,6 +4,7 @@ export interface Weather {
     main: string;
     description: string;
     temp: number;
+    thermal_sensation: number
     max_temp: number;
     min_temp: number;
     humidity: number;
