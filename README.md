@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/99099658/244470881-331c4361-0862-4240-a6da-0a9f288ad6ed.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230608%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230608T182630Z&X-Amz-Expires=300&X-Amz-Signature=054483f9e9c27c8a94af7f21e023e3c4351220fd3ef435446aef63d7f00d3cde&X-Amz-SignedHeaders=host&actor_id=99099658&key_id=0&repo_id=641946539" width="12%">
+<img src="https://github.com/AxelAlemanD/weather-app/assets/99099658/3cf5aff3-c023-47eb-871c-c6c8b3ff2d4e" width="12%">
   <h1>Weather App</h1>
 
   <br>  
